@@ -1,11 +1,15 @@
+<?php
+  include "ketnoi.php";
+?>
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
-  <!-- contact32:04-->
+  <!-- login-register31:27-->
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <title>
-      Contact || limupa - Digital Products Store eCommerce Bootstrap 4 Template
+      Login Register || limupa - Digital Products Store eCommerce Bootstrap 4
+      Template
     </title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -35,16 +39,21 @@
     <link rel="stylesheet" href="css/magnific-popup.css" />
     <!-- Bootstrap V4.1.3 Fremwork CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css" />
-    <!-- Main Style CSS -->
-    <link rel="stylesheet" href="style.css" />
     <!-- Helper CSS -->
     <link rel="stylesheet" href="css/helper.css" />
+    <!-- Main Style CSS -->
+    <link rel="stylesheet" href="style.css" />
     <!-- Responsive CSS -->
     <link rel="stylesheet" href="css/responsive.css" />
     <!-- Modernizr js -->
     <script src="js/vendor/modernizr-2.8.3.min.js"></script>
   </head>
   <body>
+  <script>
+    function tailai(a){
+      location.replace(a)
+    }
+  </script>
     <!--[if lt IE 8]>
       <p class="browserupgrade">
         You are using an <strong>outdated</strong> browser. Please
@@ -77,17 +86,17 @@
                   <ul class="ht-menu">
                     <!-- Begin login Area -->
                     <li>
-                      <a href="login-register.html">Đăng nhập</a>
+                      <a href="login-register.php">Đăng nhập</a>
                     </li>
                     <!-- login Area End Here -->
                     <!-- Begin cart Area -->
                     <li>
-                      <a href="checkout.html">Giỏ hàng</a>
+                      <a href="checkout.php">Giỏ hàng</a>
                     </li>
                     <!-- cart Area End Here -->
                     <!-- Begin wishlist Area -->
                     <li>
-                      <a href="wishlist.html">Yêu thích</a>
+                      <a href="wishlist.php">Yêu thích</a>
                     </li>
                     <!-- wishlist Area End Here -->
                   </ul>
@@ -105,7 +114,7 @@
               <!-- Begin Header Logo Area -->
               <div class="col-lg-3">
                 <div class="logo pb-sm-30 pb-xs-30">
-                  <a href="index.html">
+                  <a href="index.php">
                     <img src="images/menu/logo/logo.jpg" alt="" width="70%" />
                   </a>
                 </div>
@@ -141,9 +150,9 @@
                 <div class="hb-menu">
                   <nav>
                     <ul>
-                      <li><a href="index.html">Trang chủ</a></li>
+                      <li><a href="index.php">Trang chủ</a></li>
                       <li class="dropdown-holder">
-                        <a href="index.html">Hãng</a>
+                        <a href="index.php">Hãng</a>
                         <ul class="hb-dropdown">
                           <li><a href="index.html">iPhone</a></li>
                           <li><a href="index-2.html">Samsung</a></li>
@@ -151,8 +160,8 @@
                           <li><a href="index-4.html">Xiaomi</a></li>
                         </ul>
                       </li>
-                      <li><a href="about-us.html">Giới thiệu</a></li>
-                      <li><a href="contact.html">Liên hệ</a></li>
+                      <li><a href="about-us.php">Giới thiệu</a></li>
+                      <li><a href="contact.php">Liên hệ</a></li>
                     </ul>
                   </nav>
                 </div>
@@ -178,101 +187,159 @@
         <div class="container">
           <div class="breadcrumb-content">
             <ul>
-              <li><a href="index.html">Trang chủ</a></li>
-              <li class="active">Liên hệ</li>
+              <li><a href="index.php">Trang chủ</a></li>
+              <li class="active">Đăng nhập</li>
             </ul>
           </div>
         </div>
       </div>
       <!-- Li's Breadcrumb Area End Here -->
-      <!-- Begin Contact Main Page Area -->
-      <div class="contact-main-page mt-60 mb-40 mb-md-40 mb-sm-40 mb-xs-40">
-        <div class="container mb-60">
-          <div id="google-map"></div>
-        </div>
+      <!-- Begin Login Content Area -->
+      <div class="page-section mb-60">
         <div class="container">
           <div class="row">
-            <div class="col-lg-5 offset-lg-1 col-md-12 order-1 order-lg-2">
-              <div class="contact-page-side-content">
-                <h3 class="contact-page-title">Thông tin liên hệ</h3>
-                <br />
-                <div class="single-contact-block">
-                  <h4><i class="fa fa-fax"></i> Địa chỉ</h4>
-                  <p>102 Hùng Vương, phường An Mỹ, TP Tam Kỳ, tỉnh Quảng Nam</p>
-                </div>
-                <div class="single-contact-block">
-                  <h4><i class="fa fa-phone"></i> Số điện thoại</h4>
-                  <p>
-                    Đặt hàng:
-                    <span style="margin-left: 3px">(+84) 123 456 789</span>
-                  </p>
-                  <p>
-                    Hỗ trợ: <span style="margin-left: 20px">1009 1111</span>
-                  </p>
-                </div>
-                <div class="single-contact-block last-child">
-                  <h4><i class="fa fa-envelope-o"></i> Email</h4>
-                  <p>yourmail@gmail.com</p>
-                  <p>support@gmail.com</p>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-6 col-md-12 order-2 order-lg-1">
-              <div class="contact-form-content pt-sm-55 pt-xs-55">
-                <h3 class="contact-page-title">Ý kiến đóng góp</h3>
-                <div class="contact-form">
-                  <form
-                    id="contact-form"
-                    action="http://demo.hasthemes.com/limupa-v3/limupa/mail.php"
-                    method="post"
-                  >
-                    <div class="form-group">
-                      <label>Tên của bạn <span class="required">*</span></label>
-                      <input
-                        type="text"
-                        name="customerName"
-                        id="customername"
-                        required
-                      />
-                    </div>
-                    <div class="form-group">
+            <div class="col-sm-12 col-md-12 col-xs-12 col-lg-6 mb-30">
+              <!-- Login Form s-->
+              <form method="post">
+                <div class="login-form">
+                  <h4 class="login-title">Đăng nhập</h4>
+                  <div class="row">
+                    <div class="col-md-12 col-12 mb-20">
                       <label
-                        >Email của bạn <span class="required">*</span></label
+                        >Số điện thoại <span style="color: red">*</span></label
                       >
                       <input
-                        type="email"
-                        name="customerEmail"
-                        id="customerEmail"
-                        required
+                        class="mb-0"
+                        type="text"
+                        placeholder="Số điện thoại"
+                        name="SDT"
                       />
                     </div>
-                    <div class="form-group mb-30">
-                      <label>Ý kiến của bạn </label>
-                      <textarea
-                        name="contactMessage"
-                        id="contactMessage"
-                      ></textarea>
+                    <div class="col-12 mb-20">
+                      <label>Mật khẩu <span style="color: red">*</span></label>
+                      <input
+                        class="mb-0"
+                        type="password"
+                        placeholder="Mật khẩu"
+                        name="Pass"
+                      />
                     </div>
-                    <div class="form-group">
-                      <button
-                        type="submit"
-                        value="submit"
-                        id="submit"
-                        class="li-btn-3"
-                        name="submit"
-                      >
-                        Gửi
+                    <div class="col-md-8">
+                      <div class="check-box d-inline-block ml-0 ml-md-2 mt-10">
+                        <input type="checkbox" id="remember_me" />
+                        <label for="remember_me">Remember me</label>
+                      </div>
+                    </div>
+                    <div class="col-md-4 mt-10 mb-20 text-left text-md-right">
+                      <a href="#"> Quên mật khẩu?</a>
+                    </div>
+                    <div class="col-md-12">
+                      <button class="register-button mt-0" name="DN">
+                        Đăng nhập
                       </button>
                     </div>
-                  </form>
+                    <?php
+                      if(array_key_exists('DN', $_POST)){
+                        $SDT = $_POST['SDT'];
+                        $Pass = $_POST['Pass'];
+                        $result = $conn->prepare("SELECT * from KhachHang where SDT='$SDT' and MatKhau = '$Pass'"); 
+                        $result->execute();
+                        $result->setFetchMode(PDO::FETCH_ASSOC); 
+                        $data = $result->fetchAll(); 
+                        if ($data){
+                          if ($data[0]['Quyen']=='user'){
+                            $ten = $data[0]['TenKH'];
+                            echo "<script>tailai('index.php?SDT=$SDT&ten=$ten')</script>";
+                          }
+                        } else { 
+                          echo "<div class='col-md-12' style='color: red; margin-top: 12px'>Số điện thoại hoặc mật khẩu không đúng</div>"; 
+                        } 
+                      } 
+                    ?>
+                  </div>
                 </div>
-                <p class="form-messege"></p>
-              </div>
+              </form>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-6 col-xs-12">
+              <form method="post">
+                <div class="login-form">
+                  <h4 class="login-title">Đăng ký</h4>
+                  <div class="row">
+                    <div class="col-md-12 col-12 mb-20">
+                      <label>Họ và tên <span style="color: red">*</span></label>
+                      <input
+                        class="mb-0"
+                        type="text"
+                        placeholder="Nhập họ tên"
+                        name="hoten"
+                      />
+                    </div>
+                    <div class="col-md-12 mb-20">
+                      <label
+                        >Số điện thoại <span style="color: red">*</span></label
+                      >
+                      <input
+                        class="mb-0"
+                        type="text"
+                        placeholder="Số điện thoại"
+                        name="SDT_DK"
+                      />
+                    </div>
+                    <div class="col-md-6 mb-20">
+                      <label>Mật khẩu <span style="color: red">*</span></label>
+                      <input
+                        class="mb-0"
+                        type="password"
+                        placeholder="Mật khẩu"
+                        name="Pass1"
+                      />
+                    </div>
+                    <div class="col-md-6 mb-20">
+                      <label
+                        >Nhập lại mật khẩu
+                        <span style="color: red">*</span></label
+                      >
+                      <input
+                        class="mb-0"
+                        type="password"
+                        placeholder="Nhập lại mật khẩu"
+                        name="Pass2"
+                      />
+                    </div>
+                    <div class="col-12">
+                      <button class="register-button mt-0" name="DK">Đăng ký</button>
+                    </div>
+                    <?php
+                      if(array_key_exists('DK', $_POST)){
+                        $SDT_DK = $_POST['SDT_DK'];
+                        $Pass1 = $_POST['Pass1'];
+                        $hoten = $_POST['hoten'];
+                        $Pass2 = $_POST['Pass2'];
+                        if ($Pass1==$Pass2){
+                          $result = $conn->prepare("SELECT * from KhachHang where SDT='$SDT_DK'"); 
+                          $result->execute();
+                          $result->setFetchMode(PDO::FETCH_ASSOC); 
+                          $data = $result->fetchAll(); 
+                          if ($data){
+                            echo "<div class='col-md-12' style='color: red; margin-top: 12px'>Số điện thoại đã tồn tại</div>";
+                          } else { 
+                            $sql = "INSERT INTO KhachHang(SDT, TenKH, MatKhau, Quyen) VALUES('$SDT_DK','$hoten','$Pass1','user')";
+                            $conn->exec($sql);
+                            echo "<script>tailai('index.php?SDT=$SDT_DK&ten=$hoten')</script>";
+                          } 
+                        } else {
+                          echo "<div class='col-md-12' style='color: red; margin-top: 12px'>Mật khẩu nhập lại không đúng</div>";
+                        }
+                      } 
+                    ?>
+                  </div>
+                </div>
+              </form>
             </div>
           </div>
         </div>
       </div>
-      <!-- Contact Main Page Area End Here -->
+      <!-- Login Content Area End Here -->
       <!-- Begin Footer Area -->
       <div class="footer">
         <!-- Begin Footer Static Top Area -->
@@ -386,8 +453,8 @@
                   <div class="footer-block">
                     <h3 class="footer-block-title">Về chúng tôi</h3>
                     <ul>
-                      <li><a href="#">Giới thiệu</a></li>
-                      <li><a href="#">Liên hệ</a></li>
+                      <li><a href="about-us.php">Giới thiệu</a></li>
+                      <li><a href="contact.php">Liên hệ</a></li>
                     </ul>
                   </div>
                 </div>
@@ -512,218 +579,7 @@
     <script src="js/scrollUp.min.js"></script>
     <!-- Main/Activator js -->
     <script src="js/main.js"></script>
-    <!-- Google Map -->
-    <script src="https://maps.google.com/maps/api/js?sensor=false&amp;libraries=geometry&amp;v=3.22&amp;key=AIzaSyChs2QWiAhnzz0a4OEhzqCXwx_qA9ST_lE"></script>
-
-    <script>
-      // When the window has finished loading create our google map below
-      google.maps.event.addDomListener(window, "load", init);
-      function init() {
-        // Basic options for a simple Google Map
-        // For more options see: https://developers.google.com/maps/documentation/javascript/reference#MapOptions
-        var mapOptions = {
-          // How zoomed in you want the map to start at (always required)
-          zoom: 12,
-          scrollwheel: false,
-          // The latitude and longitude to center the map (always required)
-          center: new google.maps.LatLng(40.74061, -73.935242), // New York
-          // How you would like to style the map.
-          // This is where you would paste any style found on
-          styles: [
-            {
-              featureType: "water",
-              elementType: "geometry",
-              stylers: [
-                {
-                  color: "#e9e9e9",
-                },
-                {
-                  lightness: 17,
-                },
-              ],
-            },
-            {
-              featureType: "landscape",
-              elementType: "geometry",
-              stylers: [
-                {
-                  color: "#f5f5f5",
-                },
-                {
-                  lightness: 20,
-                },
-              ],
-            },
-            {
-              featureType: "road.highway",
-              elementType: "geometry.fill",
-              stylers: [
-                {
-                  color: "#ffffff",
-                },
-                {
-                  lightness: 17,
-                },
-              ],
-            },
-            {
-              featureType: "road.highway",
-              elementType: "geometry.stroke",
-              stylers: [
-                {
-                  color: "#ffffff",
-                },
-                {
-                  lightness: 29,
-                },
-                {
-                  weight: 0.2,
-                },
-              ],
-            },
-            {
-              featureType: "road.arterial",
-              elementType: "geometry",
-              stylers: [
-                {
-                  color: "#ffffff",
-                },
-                {
-                  lightness: 18,
-                },
-              ],
-            },
-            {
-              featureType: "road.local",
-              elementType: "geometry",
-              stylers: [
-                {
-                  color: "#ffffff",
-                },
-                {
-                  lightness: 16,
-                },
-              ],
-            },
-            {
-              featureType: "poi",
-              elementType: "geometry",
-              stylers: [
-                {
-                  color: "#f5f5f5",
-                },
-                {
-                  lightness: 21,
-                },
-              ],
-            },
-            {
-              featureType: "poi.park",
-              elementType: "geometry",
-              stylers: [
-                {
-                  color: "#dedede",
-                },
-                {
-                  lightness: 21,
-                },
-              ],
-            },
-            {
-              elementType: "labels.text.stroke",
-              stylers: [
-                {
-                  visibility: "on",
-                },
-                {
-                  color: "#ffffff",
-                },
-                {
-                  lightness: 16,
-                },
-              ],
-            },
-            {
-              elementType: "labels.text.fill",
-              stylers: [
-                {
-                  saturation: 36,
-                },
-                {
-                  color: "#333333",
-                },
-                {
-                  lightness: 40,
-                },
-              ],
-            },
-            {
-              elementType: "labels.icon",
-              stylers: [
-                {
-                  visibility: "off",
-                },
-              ],
-            },
-            {
-              featureType: "transit",
-              elementType: "geometry",
-              stylers: [
-                {
-                  color: "#f2f2f2",
-                },
-                {
-                  lightness: 19,
-                },
-              ],
-            },
-            {
-              featureType: "administrative",
-              elementType: "geometry.fill",
-              stylers: [
-                {
-                  color: "#fefefe",
-                },
-                {
-                  lightness: 20,
-                },
-              ],
-            },
-            {
-              featureType: "administrative",
-              elementType: "geometry.stroke",
-              stylers: [
-                {
-                  color: "#fefefe",
-                },
-                {
-                  lightness: 17,
-                },
-                {
-                  weight: 1.2,
-                },
-              ],
-            },
-          ],
-        };
-
-        // Get the HTML DOM element that will contain your map
-        // We are using a div with id="map" seen below in the <body>
-        var mapElement = document.getElementById("google-map");
-
-        // Create the Google Map using our element and options defined above
-        var map = new google.maps.Map(mapElement, mapOptions);
-
-        // Let's also add a marker while we're at it
-        var marker = new google.maps.Marker({
-          position: new google.maps.LatLng(40.74061, -73.935242),
-          map: map,
-          title: "Limupa",
-          animation: google.maps.Animation.BOUNCE,
-        });
-      }
-    </script>
   </body>
 
-  <!-- contact32:04-->
+  <!-- login-register31:27-->
 </html>

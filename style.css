@@ -316,8 +316,8 @@ textarea {
 /*----------------------------------------*/
 button.li-btn {
   border: none;
-  background: #53c4f5;
-  color: #242424;
+  background: #68d4ff;
+  color: #000000;
   font-size: 20px;
   width: 45px;
   border-radius: 0 2px 2px 0;
@@ -1199,7 +1199,7 @@ textarea:focus {
   z-index: 1050;
 }
 .modal-wrapper .modal-dialog {
-  max-width: 880px;
+  max-width: 250px;
 }
 .modal-wrapper .close {
   color: #333333;
@@ -1209,7 +1209,7 @@ textarea:focus {
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
   position: absolute;
   right: 15px;
-  top: 5px;
+  top: 10px;
   z-index: 99;
 }
 .modal-wrapper .close:hover {
@@ -1618,12 +1618,13 @@ textarea:focus {
   padding: 30px;
 }
 .hm-searchbox {
+  margin-top: 15px;
   display: flex;
   position: relative;
   background: #fff;
   border-radius: 5px;
-  border: 1px solid #e1e1e1;
-  min-width: 638px;
+  border: 1px solid #070000;
+  min-width: 708px;
   height: 45px;
   float: left;
 }
@@ -1919,7 +1920,7 @@ textarea:focus {
 }
 /*Header Bottom Menu*/
 .header-bottom {
-  background: #53c4f5;
+  background: #68d4ff;
   margin-bottom: 20px;
 }
 .hb-menu > nav > ul {
@@ -1933,7 +1934,7 @@ textarea:focus {
 }
 .hb-menu nav > ul > li > a {
   display: flex;
-  color: #242424;
+  color: #060000;
   text-transform: uppercase;
   font-size: 14px;
   line-height: 35px;
@@ -2343,7 +2344,7 @@ textarea:focus {
 }
 .single-product-wrap:hover {
   margin: 0 0 -75px;
-  padding: 0 0 75px;
+  padding: 0 0 15px;
   z-index: 9;
 }
 .single-product-wrap.mt-40:hover {

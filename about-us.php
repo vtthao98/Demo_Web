@@ -76,18 +76,38 @@
                 <div>
                   <ul class="ht-menu">
                     <!-- Begin login Area -->
-                    <li>
-                      <a href="login-register.html">Đăng nhập</a>
-                    </li>
+                    <?php
+                      if(isset($_GET["SDT"])){
+                        include "ketnoi.php";
+                        $SDT = $_GET['SDT'];
+                        $ten = $_GET['ten'];
+                        $a = "?SDT=$SDT&ten=$ten";
+                        ?>
+                        <li style="color:blue">
+                          Xin chào <?php echo $ten; ?>!
+                        </li>
+                        <li>
+                          <a href="index.php">Đăng xuất</a>
+                        </li>
+                        <?php        
+                      } else {
+                        ?>
+                        <li>
+                          <a href="login-register.php">Đăng nhập</a>
+                        </li>
+                        <?php
+                        $a = "";        
+                      }
+                    ?>
                     <!-- login Area End Here -->
                     <!-- Begin cart Area -->
                     <li>
-                      <a href="checkout.html">Giỏ hàng</a>
+                      <a href="<?php echo "checkout.php".$a; ?>">Giỏ hàng</a>
                     </li>
                     <!-- cart Area End Here -->
                     <!-- Begin wishlist Area -->
                     <li>
-                      <a href="wishlist.html">Yêu thích</a>
+                      <a href="<?php echo "wishlist.php".$a; ?>">Yêu thích</a>
                     </li>
                     <!-- wishlist Area End Here -->
                   </ul>
@@ -105,7 +125,7 @@
               <!-- Begin Header Logo Area -->
               <div class="col-lg-3">
                 <div class="logo pb-sm-30 pb-xs-30">
-                  <a href="index.html">
+                  <a href="<?php echo "index.php".$a; ?>">
                     <img src="images/menu/logo/logo.jpg" alt="" width="70%" />
                   </a>
                 </div>
@@ -141,7 +161,7 @@
                 <div class="hb-menu">
                   <nav>
                     <ul>
-                      <li><a href="index.html">Trang chủ</a></li>
+                      <li><a href="<?php echo "index.php".$a; ?>">Trang chủ</a></li>
                       <li class="dropdown-holder">
                         <a href="index.html">Hãng</a>
                         <ul class="hb-dropdown">
@@ -151,8 +171,8 @@
                           <li><a href="index.html">Xiaomi</a></li>
                         </ul>
                       </li>
-                      <li><a href="about-us.html">Giới thiệu</a></li>
-                      <li><a href="contact.html">Liên hệ</a></li>
+                      <li><a href="#">Giới thiệu</a></li>
+                      <li><a href="<?php echo "contact.php".$a; ?>">Liên hệ</a></li>
                     </ul>
                   </nav>
                 </div>
@@ -169,7 +189,7 @@
         <div class="container">
           <div class="breadcrumb-content">
             <ul>
-              <li><a href="index.html">Trang chủ</a></li>
+              <li><a href="<?php echo "index.php".$a; ?>">Trang chủ</a></li>
               <li class="active">Giới thiệu</li>
             </ul>
           </div>
@@ -317,8 +337,7 @@
                       102 Hùng Vương, phường An Mỹ, TP Tam Kỳ, tỉnh Quảng Nam
                     </li>
                     <li>
-                      <span>Phone: </span>
-                      <a href="#">(+84) 123 321 345</a>
+                      <span>Phone: </span>(+84) 123 321 345
                     </li>
                     <li><span>Email: </span>info@yourdomain.com</li>
                   </ul>
@@ -330,7 +349,7 @@
                     <h3 class="footer-block-title">Về chúng tôi</h3>
                     <ul>
                       <li><a href="#">Giới thiệu</a></li>
-                      <li><a href="#">Liên hệ</a></li>
+                      <li><a href="<?php echo "contact.php".$a; ?>">Liên hệ</a></li>
                     </ul>
                   </div>
                 </div>
