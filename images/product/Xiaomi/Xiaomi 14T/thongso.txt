@@ -1,0 +1,11 @@
+Tên sản phẩm: 	Xiaomi 14T 5G
+Ram: 		12GB
+Dung lượng: 	256GB
+Màn hình: 	6.67" - Tần số quét 144 Hz
+camera trước:	32 MP
+camera sau:  	Chính 50 MP & Phụ 50 MP, 12 MP
+Cpu xử lí: 	MediaTek Dimensity 8300 Ultra 8 nhân
+Pin: 		5000 mAh
+Sạc nhanh: 	67 W
+Hệ điều hành:	Androi
+

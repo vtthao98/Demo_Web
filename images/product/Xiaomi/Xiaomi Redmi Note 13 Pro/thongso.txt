@@ -1,0 +1,11 @@
+Tên sản phẩm: 	Xiaomi Redmi Note 13 Pro
+Ram: 		8GB
+Dung lượng: 	128GB
+Màn hình: 	6.67" - Tần số quét 120 Hz
+camera trước:	16 MP
+camera sau:  	Chính 200 MP & Phụ 8 MP, 2 MP
+Cpu xử lí: 	MediaTek Helio G99-Ultra 8 nhân
+Pin: 		5160 mAh
+Sạc nhanh: 	33 W
+Hệ điều hành:	Androi
+

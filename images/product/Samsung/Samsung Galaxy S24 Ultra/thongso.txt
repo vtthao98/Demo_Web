@@ -1,0 +1,11 @@
+Tên sản phẩm: 	Samsung Galaxy S24 Ultra 5G
+Ram: 		12GB
+Dung lượng: 	256GB
+Màn hình: 	6.8" - Tần số quét 120 Hz
+camera trước:	12 MP
+camera sau:  	Chính 200 MP & Phụ 50 MP, 12 MP, 10 MP
+Cpu xử lí: 	Snapdragon 8 Gen 3 for Galaxy
+Pin: 		5000 mAh
+Sạc nhanh: 	45 W
+Hệ điều hành:	Androi
+

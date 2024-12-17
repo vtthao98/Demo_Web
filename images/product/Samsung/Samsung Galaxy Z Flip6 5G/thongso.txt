@@ -1,0 +1,11 @@
+Tên sản phẩm: 	Samsung Galaxy Z Flip6 5G
+Ram: 		12GB
+Dung lượng: 	256GB
+Màn hình: 	Chính 6.7" & Phụ 3.4" - Tần số quét Chính: 120 Hz & Phụ: 60 Hz
+camera trước:	10 MP
+camera sau:  	Chính 50 MP & Phụ 12 MP
+Cpu xử lí: 	Snapdragon 8 Gen 3 for Galaxy
+Pin: 		4000 mAh
+Sạc nhanh: 	25 W
+Hệ điều hành:	Androi
+

@@ -1,0 +1,11 @@
+Tên sản phẩm: 	OPPO Reno11 Pro 5G
+Ram: 		12GB
+Dung lượng: 	512GB
+Màn hình: 	6.7" - Tần số quét 120 Hz
+camera trước:	32MP
+camera sau:  	Chính 50 MP & Phụ 32 MP, 8 MP
+Cpu xử lí: 	MediaTek Dimensity 8200 8 nhân
+Pin: 		4600 mAh
+Sạc nhanh: 	80 W
+Hệ điều hành:	Androi
+

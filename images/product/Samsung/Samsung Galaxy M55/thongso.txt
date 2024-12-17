@@ -1,0 +1,11 @@
+Tên sản phẩm: 	Samsung Galaxy M55
+Ram: 		12GB
+Dung lượng: 	256GB
+Màn hình: 	6.7" - Tần số quét 120 Hz
+camera trước:	50 MP
+camera sau:  	Chính 50 MP & Phụ 8 MP, 2 MP
+Cpu xử lí: 	Snapdragon 7 Gen 1 8 nhân
+Pin: 		5000 mAh
+Sạc nhanh: 	45 W
+Hệ điều hành:	Androi
+

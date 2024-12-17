@@ -85,20 +85,41 @@
                 <div>
                   <ul class="ht-menu">
                     <!-- Begin login Area -->
-                    <li>
-                      <a href="login-register.php">Đăng nhập</a>
-                    </li>
+                    <?php
+                      if(isset($_GET["SDT"])){
+                        $SDT = $_GET['SDT'];
+                        $ten = $_GET['ten'];
+                        $a = "?SDT=$SDT&ten=$ten";
+                        $IDHang = $a."&IDHang=";
+                        ?>
+                        <li style="color:blue">
+                          Xin chào <?php echo $ten; ?>!
+                        </li>
+                        <li>
+                          <a href="index.php">Đăng xuất</a>
+                        </li>
+                        <!-- Begin cart Area -->
+                        <li>
+                          <a href="<?php echo "checkout.php".$a; ?>">Giỏ hàng</a>
+                        </li>
+                        <!-- cart Area End Here -->
+                        <!-- Begin wishlist Area -->
+                        <li>
+                          <a href="<?php echo "wishlist.php".$a; ?>">Yêu thích</a>
+                        </li>
+                        <!-- wishlist Area End Here -->
+                        <?php        
+                      } else {
+                        ?>
+                        <li>
+                          <a href="login-register.php" style="font-size:15px">Đăng nhập</a>
+                        </li>
+                        <?php
+                        $a = "";
+                        $IDHang = "?IDHang=";
+                      }
+                    ?>
                     <!-- login Area End Here -->
-                    <!-- Begin cart Area -->
-                    <li>
-                      <a href="checkout.php">Giỏ hàng</a>
-                    </li>
-                    <!-- cart Area End Here -->
-                    <!-- Begin wishlist Area -->
-                    <li>
-                      <a href="wishlist.php">Yêu thích</a>
-                    </li>
-                    <!-- wishlist Area End Here -->
                   </ul>
                 </div>
               </div>
@@ -114,8 +135,8 @@
               <!-- Begin Header Logo Area -->
               <div class="col-lg-3">
                 <div class="logo pb-sm-30 pb-xs-30">
-                  <a href="index.php">
-                    <img src="images/menu/logo/logo.jpg" alt="" width="70%" />
+                  <a href="<?php echo "index.php".$a; ?>">
+                    <img src="images/menu/logo/logo2.jpg" alt="" width="100%" />
                   </a>
                 </div>
               </div>
@@ -150,18 +171,18 @@
                 <div class="hb-menu">
                   <nav>
                     <ul>
-                      <li><a href="index.php">Trang chủ</a></li>
+                      <li><a href= "<?php echo "index.php".$a; ?>">Trang chủ</a></li>
                       <li class="dropdown-holder">
-                        <a href="index.php">Hãng</a>
+                        <a href="#">Hãng</a>
                         <ul class="hb-dropdown">
-                          <li><a href="index.html">iPhone</a></li>
-                          <li><a href="index-2.html">Samsung</a></li>
-                          <li><a href="index-3.html">OPPO</a></li>
-                          <li><a href="index-4.html">Xiaomi</a></li>
+                          <li><a href="shop-3-column.php<?php echo $IDHang; ?>A">Apple</a></li>
+                          <li><a href="shop-3-column.php<?php echo $IDHang; ?>S">Samsung</a></li>
+                          <li><a href="shop-3-column.php<?php echo $IDHang; ?>O">OPPO</a></li>
+                          <li><a href="shop-3-column.php<?php echo $IDHang; ?>X">Xiaomi</a></li>
                         </ul>
                       </li>
-                      <li><a href="about-us.php">Giới thiệu</a></li>
-                      <li><a href="contact.php">Liên hệ</a></li>
+                      <li><a href="<?php echo "about-us.php".$a; ?>">Giới thiệu</a></li>
+                      <li><a href="<?php echo "contact.php".$a; ?>">Liên hệ</a></li>
                     </ul>
                   </nav>
                 </div>
@@ -172,13 +193,13 @@
         </div>
         <!-- Header Bottom Area End Here -->
         <!-- Begin Mobile Menu Area -->
-        <div class="mobile-menu-area d-lg-none d-xl-none col-12">
+        <!-- <div class="mobile-menu-area d-lg-none d-xl-none col-12">
           <div class="container">
             <div class="row">
               <div class="mobile-menu"></div>
             </div>
           </div>
-        </div>
+        </div> -->
         <!-- Mobile Menu Area End Here -->
       </header>
       <!-- Header Area End Here -->
@@ -224,14 +245,15 @@
                         name="Pass"
                       />
                     </div>
-                    <div class="col-md-8">
+                    <!-- <div class="col-md-8">
                       <div class="check-box d-inline-block ml-0 ml-md-2 mt-10">
                         <input type="checkbox" id="remember_me" />
                         <label for="remember_me">Remember me</label>
                       </div>
-                    </div>
-                    <div class="col-md-4 mt-10 mb-20 text-left text-md-right">
-                      <a href="#"> Quên mật khẩu?</a>
+                    </div> -->
+                    <div class="col-md-4 mt-5 mb-20 text-left ">
+                      <a href='' title='quick view' class='quick-view-btn' data-toggle='modal' data-target='#exampleModalCenter'> 
+                        Quên mật khẩu?</a>
                     </div>
                     <div class="col-md-12">
                       <button class="register-button mt-0" name="DN">
@@ -285,6 +307,17 @@
                         name="SDT_DK"
                       />
                     </div>
+                    <div class="col-md-12 mb-20">
+                      <label
+                        >Địa chỉ email <span style="color: red">*</span></label
+                      >
+                      <input
+                        class="mb-0"
+                        type="email"
+                        placeholder="Email"
+                        name="email_DK"
+                      />
+                    </div>
                     <div class="col-md-6 mb-20">
                       <label>Mật khẩu <span style="color: red">*</span></label>
                       <input
@@ -312,18 +345,20 @@
                     <?php
                       if(array_key_exists('DK', $_POST)){
                         $SDT_DK = $_POST['SDT_DK'];
+                        $email_DK = $_POST['email_DK'];
                         $Pass1 = $_POST['Pass1'];
                         $hoten = $_POST['hoten'];
                         $Pass2 = $_POST['Pass2'];
-                        if ($Pass1==$Pass2){
-                          $result = $conn->prepare("SELECT * from KhachHang where SDT='$SDT_DK'"); 
+                        if ($Pass1==$Pass2 and $Pass1!=NULL and $Pass1!=""){
+                          $result = $conn->prepare("SELECT * from KhachHang where SDT='$SDT_DK' or Email='$email_DK'"); 
                           $result->execute();
                           $result->setFetchMode(PDO::FETCH_ASSOC); 
                           $data = $result->fetchAll(); 
                           if ($data){
-                            echo "<div class='col-md-12' style='color: red; margin-top: 12px'>Số điện thoại đã tồn tại</div>";
+                            echo "<div class='col-md-12' style='color: red; margin-top: 12px'>Số điện thoại hoặc email đã tồn tại</div>";
                           } else { 
-                            $sql = "INSERT INTO KhachHang(SDT, TenKH, MatKhau, Quyen) VALUES('$SDT_DK','$hoten','$Pass1','user')";
+                            $sql = "INSERT INTO KhachHang(SDT, TenKH, MatKhau, Email, Quyen) 
+                            VALUES('$SDT_DK','$hoten','$Pass1', '$email_DK','user')";
                             $conn->exec($sql);
                             echo "<script>tailai('index.php?SDT=$SDT_DK&ten=$hoten')</script>";
                           } 
@@ -429,7 +464,7 @@
                 <!-- Begin Footer Logo Area -->
                 <div class="col-lg-6 col-md-6">
                   <div class="footer-logo">
-                    <img src="images/menu/logo/logo.jpg" alt="Footer Logo" />
+                    <img src="images/menu/logo/logo2.jpg" width="40%" alt="Footer Logo" />
                     <p class="info">
                       Quality never goes of styles - Chất lượng không thể nào
                       thiếu phong cách
@@ -441,8 +476,7 @@
                       102 Hùng Vương, phường An Mỹ, TP Tam Kỳ, tỉnh Quảng Nam
                     </li>
                     <li>
-                      <span>Phone: </span>
-                      <a href="#">(+84) 123 321 345</a>
+                      <span>Phone: </span>(+84) 123 321 345
                     </li>
                     <li><span>Email: </span>info@yourdomain.com</li>
                   </ul>
@@ -472,16 +506,6 @@
                           title="Twitter"
                         >
                           <i class="fa fa-twitter"></i>
-                        </a>
-                      </li>
-                      <li class="rss">
-                        <a
-                          href="https://rss.com/"
-                          data-toggle="tooltip"
-                          target="_blank"
-                          title="RSS"
-                        >
-                          <i class="fa fa-rss"></i>
                         </a>
                       </li>
                       <li class="google-plus">
@@ -526,6 +550,9 @@
                       </li>
                     </ul>
                   </div>
+                  <!-- Begin Footer Newsletter Area -->
+
+                  <!-- Footer Newsletter Area End Here -->
                 </div>
                 <!-- Footer Block Area End Here -->
               </div>
@@ -533,8 +560,72 @@
           </div>
         </div>
         <!-- Footer Static Middle Area End Here -->
+        <!-- Begin Footer Static Bottom Area -->
+        <!-- Footer Static Bottom Area End Here -->
       </div>
       <!-- Footer Area End Here -->
+      <!-- Begin Quick View | Modal Area -->
+      <div class="modal fade modal-wrapper" id="exampleModalCenter">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-body">
+              <form action="" method="post">
+                  <p class="">
+                  <label for="SDT_QMK">Số điện thoại<span class="required">*</span></label>
+                  <input
+                    id="SDT_QMK"
+                    name="SDT_QMK"
+                    value=""
+                    size="30"
+                    aria-required="true"
+                    type="text"
+                    style="border: 1px solid #000000"
+                  />
+                  </p>
+                  <p class="">
+                    <label for="email_QMK">Email<span class="required">*</span></label>
+                    <input
+                      id="email_QMK"
+                      name="email_QMK"
+                      value=""
+                      size="30"
+                      aria-required="true"
+                      type="text"
+                      style="border: 1px solid #000000"
+                    />
+                  </p>
+                  <div class="feedback-btn pb-15">
+                    <a href="#" class="close" data-dismiss="modal" aria-label="Close">Đóng</a>
+                    <button name="gui" id="gui"><b>Gửi</b></button>
+                  </div>
+              </form>
+              <?php
+                if(array_key_exists('gui', $_POST)){
+                  $email_QMK = $_POST['email_QMK'];
+                  $SDT_QMK = $_POST['SDT_QMK'];
+                  $ktra = $conn->prepare("SELECT * from KhachHang where SDT='$SDT_QMK' and Email = '$email_QMK'"); 
+                  $ktra->execute();
+                  $ktra->setFetchMode(PDO::FETCH_ASSOC); 
+                  $data1 = $ktra->fetchAll(); 
+                  if ($data1){
+                          if ($data1[0]['Quyen']=='user'){
+                            $ten = $data1[0]['TenKH'];
+                            echo "<script>tailai('index.php?SDT=$SDT&ten=$ten')</script>";
+                          }
+                        } else { 
+                          echo "<div class='col-md-12' style='color: red; margin-top: 12px'>Số điện thoại hoặc mật khẩu không đúng</div>"; 
+                        } 
+                  if ($ND != "" && $ND != NULL) {
+                    $s = "INSERT INTO YKien(SDT, TenSP, NoiDung, NgayGhi) VALUES ('$SDT', '$TenSP','$ND', CURDATE())";
+                    $conn->exec($s);
+                  }
+                }
+               ?>  
+            </div>                   
+          </div>
+        </div>
+      </div>
+      <!-- Quick View | Modal Area End Here -->
     </div>
     <!-- Body Wrapper End Here -->
     <!-- jQuery-V1.12.4 -->

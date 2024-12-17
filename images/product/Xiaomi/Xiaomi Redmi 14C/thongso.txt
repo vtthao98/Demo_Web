@@ -1,0 +1,11 @@
+Tên sản phẩm: 	Xiaomi Redmi 14C
+Ram: 		6GB
+Dung lượng: 	128GB
+Màn hình: 	6.88 " - Tần số quét 120 Hz
+camera trước:	13 MP
+camera sau:  	Chính 50 MP & Phụ QVGA
+Cpu xử lí: 	MediaTek Helio G81-Ultra 8 nhân
+Pin: 		5160 mAh
+Sạc nhanh: 	33 W
+Hệ điều hành:	Androi
+

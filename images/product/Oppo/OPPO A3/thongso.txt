@@ -1,0 +1,12 @@
+Tên sản phẩm: 	OPPO A3
+Ram: 		6GB
+Dung lượng: 	128GB
+Màn hình: 	6.67" - Tần số quét 90 Hz
+camera trước:	5MP 
+camera sau:  	Chính 50 MP & Cảm biến Flicker
+Cpu xử lí: 	Snapdragon 6s Gen 1 8 nhân
+Pin: 		5100 mAh
+Sạc nhanh: 	45 W
+Hệ điều hành:	Androi
+
+

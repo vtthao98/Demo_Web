@@ -1,0 +1,11 @@
+Tên sản phẩm: 	Xiaomi Redmi 13
+Ram: 		6GB
+Dung lượng: 	128GB
+Màn hình: 	6.79" - Tần số quét 90 Hz
+camera trước:	13 MP
+camera sau:  	Chính 108 MP & Phụ 2 MP
+Cpu xử lí: 	MediaTek Helio G91 Ultra 8 nhân
+Pin: 		5030 mAh
+Sạc nhanh: 	33 W
+Hệ điều hành:	Androi
+

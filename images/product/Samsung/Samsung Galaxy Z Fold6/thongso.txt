@@ -1,0 +1,11 @@
+Tên sản phẩm: 	Samsung Galaxy Z Fold6 5G
+Ram: 		12GB
+Dung lượng: 	256GB
+Màn hình: 	Chính 7.6" & Phụ 6.3" - Tần số quét 120 Hz
+camera trước:	10 MP & 4 MP
+camera sau:  	Chính 50 MP & Phụ 12 MP, 10 MP
+Cpu xử lí: 	Snapdragon 8 Gen 3 for Galaxy
+Pin: 		4400 mAh
+Sạc nhanh: 	25 W
+Hệ điều hành:	Androi
+

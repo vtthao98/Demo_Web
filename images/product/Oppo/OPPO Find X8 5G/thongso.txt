@@ -1,0 +1,11 @@
+Tên sản phẩm: 	OPPO Find X8 5G
+Ram: 		16GB
+Dung lượng: 	512GB
+Màn hình: 	6.59inch - độ phân giải 2k - 120Hz
+camera trước:	32MP
+camera sau:  	3 camera 50MP
+Cpu xử lí: 	MediaTek Dimensity 9400 8 nhân
+Pin: 		5630 mAh
+Sạc nhanh: 	80 W
+Hệ điều hành:	Androi
+

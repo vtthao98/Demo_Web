@@ -1,3 +1,6 @@
+<?php
+  include "ketnoi.php";
+?>
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
   <!-- single-product31:30-->
@@ -77,20 +80,47 @@
                 <div>
                   <ul class="ht-menu">
                     <!-- Begin login Area -->
-                    <li>
-                      <a href="login-register.html">Đăng nhập</a>
-                    </li>
+                    <?php
+                      if(isset($_GET["SDT"])){
+                        $SDT = $_GET['SDT'];
+                        $ten = $_GET['ten'];
+                        $a = "?SDT=$SDT&ten=$ten";
+                        $gio = "";
+                        $yeu = "href='wishlist.php".$a."'";
+                        $IDHang = $a."&IDHang=";
+                        $bl = 'class="review-links" href="" data-toggle="modal" data-target="#mymodal"';
+                        ?>
+                        <li style="color:blue">
+                          Xin chào <?php echo $ten; ?>!
+                        </li>
+                        <li>
+                          <a href="index.php">Đăng xuất</a>
+                        </li>
+                        <!-- Begin cart Area -->
+                        <li>
+                          <a href="<?php echo "checkout.php".$a; ?>">Giỏ hàng</a>
+                        </li>
+                        <!-- cart Area End Here -->
+                        <!-- Begin wishlist Area -->
+                        <li>
+                          <a href="<?php echo "wishlist.php".$a; ?>">Yêu thích</a>
+                        </li>
+                        <!-- wishlist Area End Here -->
+                        <?php        
+                      } else {
+                        ?>
+                        <li>
+                          <a href="login-register.php" style="font-size:15px">Đăng nhập</a>
+                        </li>
+                        <?php
+                        $a = "";
+                        $gio = "href='' title='quick view' class='quick-view-btn' data-toggle='modal' data-target='#exampleModalCenter'"; 
+                        $yeu = "href='' title='quick view' class='quick-view-btn' data-toggle='modal' data-target='#exampleModalCenter'";
+                        $IDHang = "?IDHang=";
+                        $bl = "href='' title='quick view' class='quick-view-btn' data-toggle='modal' data-target='#exampleModalCenter'";
+                      }
+                    ?>
                     <!-- login Area End Here -->
-                    <!-- Begin cart Area -->
-                    <li>
-                      <a href="checkout.html">Giỏ hàng</a>
-                    </li>
-                    <!-- cart Area End Here -->
-                    <!-- Begin wishlist Area -->
-                    <li>
-                      <a href="wishlist.html">Yêu thích</a>
-                    </li>
-                    <!-- wishlist Area End Here -->
                   </ul>
                 </div>
               </div>
@@ -106,8 +136,8 @@
               <!-- Begin Header Logo Area -->
               <div class="col-lg-3">
                 <div class="logo pb-sm-30 pb-xs-30">
-                  <a href="index.html">
-                    <img src="images/menu/logo/logo.jpg" alt="" width="70%" />
+                  <a href="<?php echo "index.php".$a; ?>">
+                    <img src="images/menu/logo/logo2.jpg" alt="" width="100%" />
                   </a>
                 </div>
               </div>
@@ -142,18 +172,18 @@
                 <div class="hb-menu">
                   <nav>
                     <ul>
-                      <li><a href="index.html">Trang chủ</a></li>
+                      <li><a href= "<?php echo "index.php".$a; ?>">Trang chủ</a></li>
                       <li class="dropdown-holder">
-                        <a href="index.html">Hãng</a>
+                        <a href="#">Hãng</a>
                         <ul class="hb-dropdown">
-                          <li><a href="index.html">iPhone</a></li>
-                          <li><a href="index-2.html">Samsung</a></li>
-                          <li><a href="index-3.html">OPPO</a></li>
-                          <li><a href="index-4.html">Xiaomi</a></li>
+                          <li><a href="shop-3-column.php<?php echo $IDHang; ?>A">Apple</a></li>
+                          <li><a href="shop-3-column.php<?php echo $IDHang; ?>S">Samsung</a></li>
+                          <li><a href="shop-3-column.php<?php echo $IDHang; ?>O">OPPO</a></li>
+                          <li><a href="shop-3-column.php<?php echo $IDHang; ?>X">Xiaomi</a></li>
                         </ul>
                       </li>
-                      <li><a href="about-us.html">Giới thiệu</a></li>
-                      <li><a href="contact.html">Liên hệ</a></li>
+                      <li><a href="<?php echo "about-us.php".$a; ?>">Giới thiệu</a></li>
+                      <li><a href="<?php echo "contact.php".$a; ?>">Liên hệ</a></li>
                     </ul>
                   </nav>
                 </div>
@@ -164,13 +194,13 @@
         </div>
         <!-- Header Bottom Area End Here -->
         <!-- Begin Mobile Menu Area -->
-        <div class="mobile-menu-area d-lg-none d-xl-none col-12">
+        <!-- <div class="mobile-menu-area d-lg-none d-xl-none col-12">
           <div class="container">
             <div class="row">
               <div class="mobile-menu"></div>
             </div>
           </div>
-        </div>
+        </div> -->
         <!-- Mobile Menu Area End Here -->
       </header>
       <!-- Header Area End Here -->
@@ -179,9 +209,16 @@
         <div class="container">
           <div class="breadcrumb-content">
             <ul>
-              <li><a href="index.html">Trang chủ</a></li>
-              <li><a href="index.html">Hãng</a></li>
-              <li class="active">Tên sản phẩm</li>
+              <li><a href="<?php echo "index.php".$a; ?>">Trang chủ</a></li>
+              <?php
+                $TenSP = $_GET['TenSP'];
+                $stmt = $conn->prepare("SELECT * FROM SanPham, Hang WHERE TenSP = '$TenSP' and SanPham.IDHang = Hang.IDHang");
+                $stmt->execute(); 
+                $stmt->setFetchMode(PDO::FETCH_ASSOC); 
+                $result = $stmt->fetchAll();
+              ?>
+              <li><a href="<?php echo "index.php".$a; ?>"><?php echo $result[0]['TenHang'];?></a></li>
+              <li class="active"><?php echo $result[0]['TenSP'];?></li>
             </ul>
           </div>
         </div>
@@ -194,15 +231,15 @@
             <div class="col-lg-5 col-md-6">
               <!-- Product Details Left -->
               <div class="product-details-left">
-                <div class="product-details-images slider-navigation-1">
+                <div class="product-details-images slider-navigation-1 pb-30 pt-60">
                   <div class="lg-image">
                     <a
                       class="popup-img venobox vbox-item"
-                      href="images/product/large-size/1.jpg"
+                      href="<?php echo $result[0]['Anh1'];?>"
                       data-gall="myGallery"
                     >
                       <img
-                        src="images/product/large-size/1.jpg"
+                        src="<?php echo $result[0]['Anh1'];?>"
                         alt="product image"
                       />
                     </a>
@@ -210,11 +247,11 @@
                   <div class="lg-image">
                     <a
                       class="popup-img venobox vbox-item"
-                      href="images/product/large-size/2.jpg"
+                      href="<?php echo $result[0]['Anh2'];?>"
                       data-gall="myGallery"
                     >
                       <img
-                        src="images/product/large-size/2.jpg"
+                        src="<?php echo $result[0]['Anh2'];?>"
                         alt="product image"
                       />
                     </a>
@@ -222,11 +259,11 @@
                   <div class="lg-image">
                     <a
                       class="popup-img venobox vbox-item"
-                      href="images/product/large-size/3.jpg"
+                      href="<?php echo $result[0]['Anh3'];?>"
                       data-gall="myGallery"
                     >
                       <img
-                        src="images/product/large-size/3.jpg"
+                        src="<?php echo $result[0]['Anh3'];?>"
                         alt="product image"
                       />
                     </a>
@@ -234,11 +271,11 @@
                   <div class="lg-image">
                     <a
                       class="popup-img venobox vbox-item"
-                      href="images/product/large-size/4.jpg"
+                      href="<?php echo $result[0]['Anh4'];?>"
                       data-gall="myGallery"
                     >
                       <img
-                        src="images/product/large-size/4.jpg"
+                        src="<?php echo $result[0]['Anh4'];?>"
                         alt="product image"
                       />
                     </a>
@@ -246,23 +283,11 @@
                   <div class="lg-image">
                     <a
                       class="popup-img venobox vbox-item"
-                      href="images/product/large-size/5.jpg"
+                      href="<?php echo $result[0]['Anh5'];?>"
                       data-gall="myGallery"
                     >
                       <img
-                        src="images/product/large-size/5.jpg"
-                        alt="product image"
-                      />
-                    </a>
-                  </div>
-                  <div class="lg-image">
-                    <a
-                      class="popup-img venobox vbox-item"
-                      href="images/product/large-size/6.jpg"
-                      data-gall="myGallery"
-                    >
-                      <img
-                        src="images/product/large-size/6.jpg"
+                        src="<?php echo $result[0]['Anh5'];?>"
                         alt="product image"
                       />
                     </a>
@@ -271,37 +296,31 @@
                 <div class="product-details-thumbs slider-thumbs-1">
                   <div class="sm-image">
                     <img
-                      src="images/product/small-size/1.jpg"
+                      src="<?php echo $result[0]['Anh1'];?>"
                       alt="product image thumb"
                     />
                   </div>
                   <div class="sm-image">
                     <img
-                      src="images/product/small-size/2.jpg"
+                      src="<?php echo $result[0]['Anh2'];?>"
                       alt="product image thumb"
                     />
                   </div>
                   <div class="sm-image">
                     <img
-                      src="images/product/small-size/3.jpg"
+                      src="<?php echo $result[0]['Anh3'];?>"
                       alt="product image thumb"
                     />
                   </div>
                   <div class="sm-image">
                     <img
-                      src="images/product/small-size/4.jpg"
+                      src="<?php echo $result[0]['Anh4'];?>"
                       alt="product image thumb"
                     />
                   </div>
                   <div class="sm-image">
                     <img
-                      src="images/product/small-size/5.jpg"
-                      alt="product image thumb"
-                    />
-                  </div>
-                  <div class="sm-image">
-                    <img
-                      src="images/product/small-size/6.jpg"
+                      src="<?php echo $result[0]['Anh5'];?>"
                       alt="product image thumb"
                     />
                   </div>
@@ -309,58 +328,42 @@
               </div>
               <!--// Product Details Left -->
             </div>
-
             <div class="col-lg-7 col-md-6">
               <div class="product-details-view-content pt-60">
                 <div class="product-info">
-                  <h2>Today is a good day Framed poster</h2>
-                  <span class="product-details-ref">Reference: demo_15</span>
-                  <div class="rating-box pt-20">
-                    <ul class="rating rating-with-review-item">
-                      <li><i class="fa fa-star-o"></i></li>
-                      <li><i class="fa fa-star-o"></i></li>
-                      <li><i class="fa fa-star-o"></i></li>
-                      <li class="no-star"><i class="fa fa-star-o"></i></li>
-                      <li class="no-star"><i class="fa fa-star-o"></i></li>
-                      <li class="review-item"><a href="#">Read Review</a></li>
-                      <li class="review-item"><a href="#">Write Review</a></li>
-                    </ul>
-                  </div>
+                  <h2 style="font-size: 25px"><?php echo $result[0]['TenSP'];?></h2>
+                  <span class="product-details-ref" style="font-size: 17px"><?php echo $result[0]['TenHang'];?></span>
                   <div class="price-box pt-20">
-                    <span class="new-price new-price-2">$57.98</span>
+                    <span class="new-price new-price-2"><?php echo $result[0]['DonGia'];?></span>
+                    <span style="font-size:20px; color:red">đ</span>
                   </div>
                   <div class="product-desc">
                     <p>
-                      <span
-                        >100% cotton double printed dress. Black and white
-                        striped top and orange high waisted skater skirt bottom.
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. quibusdam corporis, earum facilis et nostrum
-                        dolorum accusamus similique eveniet quia pariatur.
-                      </span>
+                      <span style="font-size: 17px"><?php echo $result[0]['MoTa'];?></span>
                     </p>
                   </div>
                   <div class="product-variants">
                     <div class="produt-variants-size">
-                      <label>Dimension</label>
+                      <label style="font-size: 17px">Màu sắc</label>
                       <select class="nice-select">
                         <option value="1" title="S" selected="selected">
-                          40x60cm
+                          Đen
                         </option>
-                        <option value="2" title="M">60x90cm</option>
-                        <option value="3" title="L">80x120cm</option>
+                        <option value="2" title="M">Đỏ</option>
+                        <option value="3" title="L">Trắng</option>
                       </select>
                     </div>
                   </div>
                   <div class="single-add-to-cart">
-                    <form action="#" class="cart-quantity">
+                    <form method="post" class="cart-quantity">
                       <div class="quantity">
-                        <label>Quantity</label>
+                        <label>Số lượng</label>
                         <div class="cart-plus-minus">
                           <input
                             class="cart-plus-minus-box"
                             value="1"
-                            type="text"
+                            type="number"
+                            name="soluong"
                           />
                           <div class="dec qtybutton">
                             <i class="fa fa-angle-down"></i>
@@ -370,15 +373,32 @@
                           </div>
                         </div>
                       </div>
-                      <button class="add-to-cart" type="submit">
-                        Add to cart
+                      <button class="add-to-cart" name="add">
+                        <a <?php echo $gio; ?> style="color:white">Thêm vào giỏ</a>
                       </button>
                     </form>
+                    <?php
+                      if (array_key_exists('add', $_POST)) {
+                        $result2 = $conn->prepare("SELECT * from GioHang where SDT='$SDT' and TenSP = '$TenSP'"); 
+                        $result2->execute();
+                        $result2->setFetchMode(PDO::FETCH_ASSOC); 
+                        $data = $result2->fetchAll(); 
+                        if ($data){
+                          echo "<br> <br> <p class='col-md-12' style='color: red;'>Sản phẩm đã tồn tại trong giỏ hàng</p>"; 
+                        } else { 
+                          $soluong = $_POST['soluong'];
+                          $sql = "INSERT INTO GioHang(SDT, TenSP, SoLuong) VALUES ('$SDT', '$TenSP', '$soluong')";
+                          $conn->exec($sql);
+                          echo "<p class='col-md-12' style='color: red; padding-top: 20px'>Thêm sản phẩm thành công</p>"; 
+                        } 
+                      }
+                    ?>
                   </div>
                   <div class="product-additional-info pt-25">
-                    <a class="wishlist-btn" href="wishlist.html"
-                      ><i class="fa fa-heart-o"></i>Add to wishlist</a
-                    >
+                    <!-- <a class="wishlist-btn" <?php echo $yeu; ?> style="font-size: 20px">
+                      <i class="fa fa-heart-o"></i>
+                      Yêu thích
+                    </a> -->
                     <div class="product-social-sharing pt-25">
                       <ul>
                         <li class="facebook">
@@ -400,43 +420,6 @@
                       </ul>
                     </div>
                   </div>
-                  <div class="block-reassurance">
-                    <ul>
-                      <li>
-                        <div class="reassurance-item">
-                          <div class="reassurance-icon">
-                            <i class="fa fa-check-square-o"></i>
-                          </div>
-                          <p>
-                            Security policy (edit with Customer reassurance
-                            module)
-                          </p>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="reassurance-item">
-                          <div class="reassurance-icon">
-                            <i class="fa fa-truck"></i>
-                          </div>
-                          <p>
-                            Delivery policy (edit with Customer reassurance
-                            module)
-                          </p>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="reassurance-item">
-                          <div class="reassurance-icon">
-                            <i class="fa fa-exchange"></i>
-                          </div>
-                          <p>
-                            Return policy (edit with Customer reassurance
-                            module)
-                          </p>
-                        </div>
-                      </li>
-                    </ul>
-                  </div>
                 </div>
               </div>
             </div>
@@ -452,18 +435,13 @@
               <div class="li-product-tab">
                 <ul class="nav li-product-menu">
                   <li>
-                    <a class="active" data-toggle="tab" href="#description"
-                      ><span>Description</span></a
-                    >
-                  </li>
-                  <li>
-                    <a data-toggle="tab" href="#product-details"
-                      ><span>Product Details</span></a
+                    <a class="active" data-toggle="tab" href="#product-details"
+                      ><span>Thông số kỹ thuật</span></a
                     >
                   </li>
                   <li>
                     <a data-toggle="tab" href="#reviews"
-                      ><span>Reviews</span></a
+                      ><span>Đánh giá</span></a
                     >
                   </li>
                 </ul>
@@ -472,56 +450,96 @@
             </div>
           </div>
           <div class="tab-content">
-            <div id="description" class="tab-pane active show" role="tabpanel">
-              <div class="product-description">
-                <span
-                  >The best is yet to come! Give your walls a voice with a
-                  framed poster. This aesthethic, optimistic poster will look
-                  great in your desk or in an open-space office. Painted wooden
-                  frame with passe-partout for more depth.</span
-                >
-              </div>
-            </div>
-            <div id="product-details" class="tab-pane" role="tabpanel">
+            <div id="product-details" class="tab-pane active show" role="tabpanel">
               <div class="product-details-manufacturer">
-                <a href="#">
-                  <img
-                    src="images/product-details/1.jpg"
-                    alt="Product Manufacturer Image"
-                  />
-                </a>
-                <p><span>Reference</span> demo_7</p>
-                <p><span>Reference</span> demo_7</p>
+              <div class="wishlist-area pt-10 pb-60">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-12">
+                      <form action="#">
+                        <div class="table-content table-responsive">
+                          <table class="table">
+                            <thead>
+                              <tr>
+                                <th>Ram</th>
+                                <th>Dung lượng</th>
+                                <th>Độ phân giải màn hình</th>
+                                <th>Camera trước</th>
+                                <th>Camera sau</th>
+                                <th>CPU</th>
+                                <th>Pin</th>
+                                <th>Sạc nhanh</th>
+                                <th>Hệ điều hành</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td >
+                                  <?php echo $result[0]['Ram'];?>
+                                </td>
+                                <td >
+                                  <?php echo $result[0]['DungLuong'];?>
+                                </td>
+                                <td >
+                                  <?php echo $result[0]['ManHinh'];?>
+                                </td>
+                                <td >
+                                  <?php echo $result[0]['CameraT'];?>
+                                </td>
+                                <td >
+                                  <?php echo $result[0]['CameraS'];?>
+                                </td>
+                                <td >
+                                  <?php echo $result[0]['CPU'];?>
+                                </td>
+                                <td >
+                                  <?php echo $result[0]['Pin'];?>
+                                </td>
+                                <td >
+                                  <?php echo $result[0]['SacNhanh'];?>
+                                </td>
+                                <td >
+                                  <?php echo $result[0]['HDH'];?>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
               </div>
             </div>
             <div id="reviews" class="tab-pane" role="tabpanel">
               <div class="product-reviews">
                 <div class="product-details-comment-block">
-                  <div class="comment-review">
-                    <span>Grade</span>
-                    <ul class="rating">
-                      <li><i class="fa fa-star-o"></i></li>
-                      <li><i class="fa fa-star-o"></i></li>
-                      <li><i class="fa fa-star-o"></i></li>
-                      <li class="no-star"><i class="fa fa-star-o"></i></li>
-                      <li class="no-star"><i class="fa fa-star-o"></i></li>
-                    </ul>
-                  </div>
-                  <div class="comment-author-infos pt-25">
-                    <span>HTML 5</span>
-                    <em>01-12-18</em>
-                  </div>
-                  <div class="comment-details">
-                    <h4 class="title-block">Demo</h4>
-                    <p>Plaza</p>
-                  </div>
-                  <div class="review-btn">
+                  <?php
+                    $stmt1 = $conn->prepare("SELECT TenKH, NoiDung, NgayGhi FROM YKien, KhachHang 
+                    WHERE TenSP = '$TenSP' and YKien.SDT = KhachHang.SDT");
+                    $stmt1->execute(); 
+                    $stmt1->setFetchMode(PDO::FETCH_ASSOC); 
+                    $result1 = $stmt1->fetchAll();
+                    foreach($result1 as $binhluan) {
+                  ?>
+                      <div class="comment-author-infos">
+                        <span><?php echo $binhluan['TenKH'] ?></span> 
+                        <em><?php echo $binhluan['NgayGhi']; ?></em>
+                        <div style=" border-bottom: 1px solid #e1e1e1; margin-bottom: 25px;">
+                          <p style="color:black"><?php echo $binhluan['NoiDung']; ?></p>
+                        </div>
+                      </div>
+                  <?php
+                    }
+                  ?>
+                  <div class="review-btn pb-30">
                     <a
                       class="review-links"
-                      href="#"
+                      <?php echo $bl; ?>
                       data-toggle="modal"
                       data-target="#mymodal"
-                      >Write Your Review!</a
+                      >Đánh giá</a
                     >
                   </div>
                   <!-- Begin Quick View | Modal Area -->
@@ -532,27 +550,20 @@
                     >
                       <div class="modal-content">
                         <div class="modal-body">
-                          <h3 class="review-page-title">Write Your Review</h3>
+                          <h3 class="review-page-title">Viết đánh giá</h3>
                           <div class="modal-inner-area row">
                             <div class="col-lg-6">
                               <div class="li-review-product">
                                 <img
-                                  src="images/product/large-size/3.jpg"
+                                  src="<?php echo $result[0]['Anh1']; ?>"
                                   alt="Li's Product"
                                 />
                                 <div class="li-review-product-desc">
                                   <p class="li-product-name">
-                                    Today is a good day Framed poster
+                                    <?php echo $TenSP; ?>
                                   </p>
                                   <p>
-                                    <span
-                                      >Beach Camera Exclusive Bundle - Includes
-                                      Two Samsung Radiant 360 R3 Wi-Fi Bluetooth
-                                      Speakers. Fill The Entire Room With
-                                      Exquisite Sound via Ring Radiator
-                                      Technology. Stream And Control R3 Speakers
-                                      Wirelessly With Your Smartphone.
-                                      Sophisticated, Modern Design
+                                    <span> <?php echo $result[0]['MoTa']; ?>
                                     </span>
                                   </p>
                                 </div>
@@ -563,78 +574,39 @@
                                 <!-- Begin Feedback Area -->
                                 <div class="feedback-area">
                                   <div class="feedback">
-                                    <h3 class="feedback-title">Our Feedback</h3>
-                                    <form action="#">
-                                      <p class="your-opinion">
-                                        <label>Your Rating</label>
-                                        <span>
-                                          <select class="star-rating">
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                          </select>
-                                        </span>
-                                      </p>
-                                      <p class="feedback-form">
-                                        <label for="feedback"
-                                          >Your Review</label
-                                        >
+                                    <h3 class="feedback-title">Nhập bình luận</h3>
+                                    <form action="" method="post">
+                                      <!-- <p class="feedback-form"> -->
                                         <textarea
                                           id="feedback"
                                           name="comment"
                                           cols="45"
-                                          rows="8"
+                                          rows="4"
                                           aria-required="true"
                                         ></textarea>
-                                      </p>
-                                      <div class="feedback-input">
-                                        <p class="feedback-form-author">
-                                          <label for="author"
-                                            >Name<span class="required">*</span>
-                                          </label>
-                                          <input
-                                            id="author"
-                                            name="author"
-                                            value=""
-                                            size="30"
-                                            aria-required="true"
-                                            type="text"
-                                          />
-                                        </p>
-                                        <p
-                                          class="feedback-form-author feedback-form-email"
-                                        >
-                                          <label for="email"
-                                            >Email<span class="required"
-                                              >*</span
-                                            >
-                                          </label>
-                                          <input
-                                            id="email"
-                                            name="email"
-                                            value=""
-                                            size="30"
-                                            aria-required="true"
-                                            type="text"
-                                          />
-                                          <span class="required"
-                                            ><sub>*</sub> Required fields</span
-                                          >
-                                        </p>
+                                      <!-- </p> -->
+                                      <!-- <div class="feedback-input"> -->
                                         <div class="feedback-btn pb-15">
                                           <a
                                             href="#"
                                             class="close"
                                             data-dismiss="modal"
                                             aria-label="Close"
-                                            >Close</a
+                                            >Đóng</a
                                           >
-                                          <a href="#">Submit</a>
+                                          <button name="gui" id="gui">Gửi</button>
                                         </div>
-                                      </div>
+                                      <!-- </div> -->
                                     </form>
+                                    <?php
+                                      if(array_key_exists('gui', $_POST)){
+                                        $ND = $_POST['comment'];
+                                        if ($ND != "" && $ND != NULL) {
+                                          $s = "INSERT INTO YKien(SDT, TenSP, NoiDung, NgayGhi) VALUES ('$SDT', '$TenSP','$ND', CURDATE())";
+                                          $conn->exec($s);
+                                        }
+                                      }
+                                    ?>
                                   </div>
                                 </div>
                                 <!-- Feedback Area End Here -->
@@ -654,426 +626,52 @@
       </div>
       <!-- Product Area End Here -->
       <!-- Begin Li's Laptop Product Area -->
-      <section class="product-area li-laptop-product pt-30 pb-50">
+      <section class="product-area li-laptop-product pb-50">
         <div class="container">
           <div class="row">
             <!-- Begin Li's Section Area -->
             <div class="col-lg-12">
               <div class="li-section-title">
                 <h2>
-                  <span>15 other products in the same category:</span>
+                  <span>Một số sản phẩm khác:</span>
                 </h2>
               </div>
               <div class="row">
                 <div class="product-active owl-carousel">
-                  <div class="col-lg-12">
-                    <!-- single-product-wrap start -->
-                    <div class="single-product-wrap">
-                      <div class="product-image">
-                        <a href="single-product.html">
-                          <img
-                            src="images/product/large-size/1.jpg"
-                            alt="Li's Product Image"
-                          />
-                        </a>
-                        <span class="sticker">New</span>
-                      </div>
-                      <div class="product_desc">
-                        <div class="product_desc_info">
-                          <div class="product-review">
-                            <h5 class="manufacturer">
-                              <a href="product-details.html">Graphic Corner</a>
-                            </h5>
-                            <div class="rating-box">
-                              <ul class="rating">
-                                <li><i class="fa fa-star-o"></i></li>
-                                <li><i class="fa fa-star-o"></i></li>
-                                <li><i class="fa fa-star-o"></i></li>
-                                <li class="no-star">
-                                  <i class="fa fa-star-o"></i>
-                                </li>
-                                <li class="no-star">
-                                  <i class="fa fa-star-o"></i>
-                                </li>
-                              </ul>
+                  <?php for($i=1; $i<=6; $i++) { ?>
+                    <div class="col-lg-12">
+                      <!-- single-product-wrap start -->
+                      <div class="single-product-wrap">
+                        <div class="product-image">
+                          <a href="single-product.html">
+                            <img
+                              src="images/product/large-size/1.jpg"
+                              alt="Li's Product Image"
+                            />
+                          </a>
+                          <span class="sticker">New</span>
+                        </div>
+                        <div class="product_desc">
+                          <div class="product_desc_info">
+                            <div class="product-review">
+                              <h5 class="manufacturer">
+                                <a href="product-details.html">Graphic Corner</a>
+                              </h5>
+                            </div>
+                            <h4>
+                              <a class="product_name" href="single-product.html"
+                                >Accusantium dolorem1</a
+                              >
+                            </h4>
+                            <div class="price-box">
+                              <span class="new-price">$46.80</span>
                             </div>
                           </div>
-                          <h4>
-                            <a class="product_name" href="single-product.html"
-                              >Accusantium dolorem1</a
-                            >
-                          </h4>
-                          <div class="price-box">
-                            <span class="new-price">$46.80</span>
-                          </div>
-                        </div>
-                        <div class="add-actions">
-                          <ul class="add-actions-link">
-                            <li class="add-cart active">
-                              <a href="#">Add to cart</a>
-                            </li>
-                            <li>
-                              <a
-                                href="#"
-                                title="quick view"
-                                class="quick-view-btn"
-                                data-toggle="modal"
-                                data-target="#exampleModalCenter"
-                                ><i class="fa fa-eye"></i
-                              ></a>
-                            </li>
-                            <li>
-                              <a class="links-details" href="wishlist.html"
-                                ><i class="fa fa-heart-o"></i
-                              ></a>
-                            </li>
-                          </ul>
                         </div>
                       </div>
+                      <!-- single-product-wrap end -->
                     </div>
-                    <!-- single-product-wrap end -->
-                  </div>
-                  <div class="col-lg-12">
-                    <!-- single-product-wrap start -->
-                    <div class="single-product-wrap">
-                      <div class="product-image">
-                        <a href="single-product.html">
-                          <img
-                            src="images/product/large-size/2.jpg"
-                            alt="Li's Product Image"
-                          />
-                        </a>
-                        <span class="sticker">New</span>
-                      </div>
-                      <div class="product_desc">
-                        <div class="product_desc_info">
-                          <div class="product-review">
-                            <h5 class="manufacturer">
-                              <a href="product-details.html">Studio Design</a>
-                            </h5>
-                            <div class="rating-box">
-                              <ul class="rating">
-                                <li><i class="fa fa-star-o"></i></li>
-                                <li><i class="fa fa-star-o"></i></li>
-                                <li><i class="fa fa-star-o"></i></li>
-                                <li class="no-star">
-                                  <i class="fa fa-star-o"></i>
-                                </li>
-                                <li class="no-star">
-                                  <i class="fa fa-star-o"></i>
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-                          <h4>
-                            <a class="product_name" href="single-product.html"
-                              >Mug Today is a good day</a
-                            >
-                          </h4>
-                          <div class="price-box">
-                            <span class="new-price new-price-2">$71.80</span>
-                            <span class="old-price">$77.22</span>
-                            <span class="discount-percentage">-7%</span>
-                          </div>
-                        </div>
-                        <div class="add-actions">
-                          <ul class="add-actions-link">
-                            <li class="add-cart active">
-                              <a href="#">Add to cart</a>
-                            </li>
-                            <li>
-                              <a
-                                href="#"
-                                title="quick view"
-                                class="quick-view-btn"
-                                data-toggle="modal"
-                                data-target="#exampleModalCenter"
-                                ><i class="fa fa-eye"></i
-                              ></a>
-                            </li>
-                            <li>
-                              <a class="links-details" href="wishlist.html"
-                                ><i class="fa fa-heart-o"></i
-                              ></a>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- single-product-wrap end -->
-                  </div>
-                  <div class="col-lg-12">
-                    <!-- single-product-wrap start -->
-                    <div class="single-product-wrap">
-                      <div class="product-image">
-                        <a href="single-product.html">
-                          <img
-                            src="images/product/large-size/3.jpg"
-                            alt="Li's Product Image"
-                          />
-                        </a>
-                        <span class="sticker">New</span>
-                      </div>
-                      <div class="product_desc">
-                        <div class="product_desc_info">
-                          <div class="product-review">
-                            <h5 class="manufacturer">
-                              <a href="product-details.html">Graphic Corner</a>
-                            </h5>
-                            <div class="rating-box">
-                              <ul class="rating">
-                                <li><i class="fa fa-star-o"></i></li>
-                                <li><i class="fa fa-star-o"></i></li>
-                                <li><i class="fa fa-star-o"></i></li>
-                                <li class="no-star">
-                                  <i class="fa fa-star-o"></i>
-                                </li>
-                                <li class="no-star">
-                                  <i class="fa fa-star-o"></i>
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-                          <h4>
-                            <a class="product_name" href="single-product.html"
-                              >Accusantium dolorem1</a
-                            >
-                          </h4>
-                          <div class="price-box">
-                            <span class="new-price">$46.80</span>
-                          </div>
-                        </div>
-                        <div class="add-actions">
-                          <ul class="add-actions-link">
-                            <li class="add-cart active">
-                              <a href="#">Add to cart</a>
-                            </li>
-                            <li>
-                              <a
-                                href="#"
-                                title="quick view"
-                                class="quick-view-btn"
-                                data-toggle="modal"
-                                data-target="#exampleModalCenter"
-                                ><i class="fa fa-eye"></i
-                              ></a>
-                            </li>
-                            <li>
-                              <a class="links-details" href="wishlist.html"
-                                ><i class="fa fa-heart-o"></i
-                              ></a>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- single-product-wrap end -->
-                  </div>
-                  <div class="col-lg-12">
-                    <!-- single-product-wrap start -->
-                    <div class="single-product-wrap">
-                      <div class="product-image">
-                        <a href="single-product.html">
-                          <img
-                            src="images/product/large-size/4.jpg"
-                            alt="Li's Product Image"
-                          />
-                        </a>
-                        <span class="sticker">New</span>
-                      </div>
-                      <div class="product_desc">
-                        <div class="product_desc_info">
-                          <div class="product-review">
-                            <h5 class="manufacturer">
-                              <a href="product-details.html">Studio Design</a>
-                            </h5>
-                            <div class="rating-box">
-                              <ul class="rating">
-                                <li><i class="fa fa-star-o"></i></li>
-                                <li><i class="fa fa-star-o"></i></li>
-                                <li><i class="fa fa-star-o"></i></li>
-                                <li class="no-star">
-                                  <i class="fa fa-star-o"></i>
-                                </li>
-                                <li class="no-star">
-                                  <i class="fa fa-star-o"></i>
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-                          <h4>
-                            <a class="product_name" href="single-product.html"
-                              >Mug Today is a good day</a
-                            >
-                          </h4>
-                          <div class="price-box">
-                            <span class="new-price new-price-2">$71.80</span>
-                            <span class="old-price">$77.22</span>
-                            <span class="discount-percentage">-7%</span>
-                          </div>
-                        </div>
-                        <div class="add-actions">
-                          <ul class="add-actions-link">
-                            <li class="add-cart active">
-                              <a href="#">Add to cart</a>
-                            </li>
-                            <li>
-                              <a
-                                href="#"
-                                title="quick view"
-                                class="quick-view-btn"
-                                data-toggle="modal"
-                                data-target="#exampleModalCenter"
-                                ><i class="fa fa-eye"></i
-                              ></a>
-                            </li>
-                            <li>
-                              <a class="links-details" href="wishlist.html"
-                                ><i class="fa fa-heart-o"></i
-                              ></a>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- single-product-wrap end -->
-                  </div>
-                  <div class="col-lg-12">
-                    <!-- single-product-wrap start -->
-                    <div class="single-product-wrap">
-                      <div class="product-image">
-                        <a href="single-product.html">
-                          <img
-                            src="images/product/large-size/5.jpg"
-                            alt="Li's Product Image"
-                          />
-                        </a>
-                        <span class="sticker">New</span>
-                      </div>
-                      <div class="product_desc">
-                        <div class="product_desc_info">
-                          <div class="product-review">
-                            <h5 class="manufacturer">
-                              <a href="product-details.html">Graphic Corner</a>
-                            </h5>
-                            <div class="rating-box">
-                              <ul class="rating">
-                                <li><i class="fa fa-star-o"></i></li>
-                                <li><i class="fa fa-star-o"></i></li>
-                                <li><i class="fa fa-star-o"></i></li>
-                                <li class="no-star">
-                                  <i class="fa fa-star-o"></i>
-                                </li>
-                                <li class="no-star">
-                                  <i class="fa fa-star-o"></i>
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-                          <h4>
-                            <a class="product_name" href="single-product.html"
-                              >Accusantium dolorem1</a
-                            >
-                          </h4>
-                          <div class="price-box">
-                            <span class="new-price">$46.80</span>
-                          </div>
-                        </div>
-                        <div class="add-actions">
-                          <ul class="add-actions-link">
-                            <li class="add-cart active">
-                              <a href="#">Add to cart</a>
-                            </li>
-                            <li>
-                              <a
-                                href="#"
-                                title="quick view"
-                                class="quick-view-btn"
-                                data-toggle="modal"
-                                data-target="#exampleModalCenter"
-                                ><i class="fa fa-eye"></i
-                              ></a>
-                            </li>
-                            <li>
-                              <a class="links-details" href="wishlist.html"
-                                ><i class="fa fa-heart-o"></i
-                              ></a>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- single-product-wrap end -->
-                  </div>
-                  <div class="col-lg-12">
-                    <!-- single-product-wrap start -->
-                    <div class="single-product-wrap">
-                      <div class="product-image">
-                        <a href="single-product.html">
-                          <img
-                            src="images/product/large-size/6.jpg"
-                            alt="Li's Product Image"
-                          />
-                        </a>
-                        <span class="sticker">New</span>
-                      </div>
-                      <div class="product_desc">
-                        <div class="product_desc_info">
-                          <div class="product-review">
-                            <h5 class="manufacturer">
-                              <a href="product-details.html">Studio Design</a>
-                            </h5>
-                            <div class="rating-box">
-                              <ul class="rating">
-                                <li><i class="fa fa-star-o"></i></li>
-                                <li><i class="fa fa-star-o"></i></li>
-                                <li><i class="fa fa-star-o"></i></li>
-                                <li class="no-star">
-                                  <i class="fa fa-star-o"></i>
-                                </li>
-                                <li class="no-star">
-                                  <i class="fa fa-star-o"></i>
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-                          <h4>
-                            <a class="product_name" href="single-product.html"
-                              >Mug Today is a good day</a
-                            >
-                          </h4>
-                          <div class="price-box">
-                            <span class="new-price new-price-2">$71.80</span>
-                            <span class="old-price">$77.22</span>
-                            <span class="discount-percentage">-7%</span>
-                          </div>
-                        </div>
-                        <div class="add-actions">
-                          <ul class="add-actions-link">
-                            <li class="add-cart active">
-                              <a href="#">Add to cart</a>
-                            </li>
-                            <li>
-                              <a
-                                href="#"
-                                title="quick view"
-                                class="quick-view-btn"
-                                data-toggle="modal"
-                                data-target="#exampleModalCenter"
-                                ><i class="fa fa-eye"></i
-                              ></a>
-                            </li>
-                            <li>
-                              <a class="links-details" href="wishlist.html"
-                                ><i class="fa fa-heart-o"></i
-                              ></a>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- single-product-wrap end -->
-                  </div>
+                  <?php } ?>  
                 </div>
               </div>
             </div>
@@ -1171,7 +769,7 @@
                 <!-- Begin Footer Logo Area -->
                 <div class="col-lg-6 col-md-6">
                   <div class="footer-logo">
-                    <img src="images/menu/logo/logo.jpg" alt="Footer Logo" />
+                    <img src="images/menu/logo/logo2.jpg" width="40%" alt="Footer Logo" />
                     <p class="info">
                       Quality never goes of styles - Chất lượng không thể nào
                       thiếu phong cách
@@ -1183,8 +781,7 @@
                       102 Hùng Vương, phường An Mỹ, TP Tam Kỳ, tỉnh Quảng Nam
                     </li>
                     <li>
-                      <span>Phone: </span>
-                      <a href="#">(+84) 123 321 345</a>
+                      <span>Phone: </span>(+84) 123 321 345
                     </li>
                     <li><span>Email: </span>info@yourdomain.com</li>
                   </ul>
@@ -1195,8 +792,8 @@
                   <div class="footer-block">
                     <h3 class="footer-block-title">Về chúng tôi</h3>
                     <ul>
-                      <li><a href="#">Giới thiệu</a></li>
-                      <li><a href="#">Liên hệ</a></li>
+                      <li><a href="<?php echo "about-us.php".$a; ?>">Giới thiệu</a></li>
+                      <li><a href="<?php echo "contact.php".$a; ?>">Liên hệ</a></li>
                     </ul>
                   </div>
                 </div>
@@ -1216,22 +813,12 @@
                           <i class="fa fa-twitter"></i>
                         </a>
                       </li>
-                      <li class="rss">
-                        <a
-                          href="https://rss.com/"
-                          data-toggle="tooltip"
-                          target="_blank"
-                          title="RSS"
-                        >
-                          <i class="fa fa-rss"></i>
-                        </a>
-                      </li>
                       <li class="google-plus">
                         <a
                           href="https://www.plus.google.com/discover"
                           data-toggle="tooltip"
                           target="_blank"
-                          title="Google +"
+                          title="Google Plus"
                         >
                           <i class="fa fa-google-plus"></i>
                         </a>
@@ -1268,6 +855,9 @@
                       </li>
                     </ul>
                   </div>
+                  <!-- Begin Footer Newsletter Area -->
+
+                  <!-- Footer Newsletter Area End Here -->
                 </div>
                 <!-- Footer Block Area End Here -->
               </div>
@@ -1275,13 +865,15 @@
           </div>
         </div>
         <!-- Footer Static Middle Area End Here -->
+        <!-- Begin Footer Static Bottom Area -->
+        <!-- Footer Static Bottom Area End Here -->
       </div>
       <!-- Footer Area End Here -->
       <!-- Begin Quick View | Modal Area -->
       <div class="modal fade modal-wrapper" id="exampleModalCenter">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
-            <div class="modal-body">
+            <div class="modal-body" >
               <button
                 type="button"
                 class="close"
@@ -1289,196 +881,8 @@
                 aria-label="Close"
               >
                 <span aria-hidden="true">&times;</span>
-              </button>
-              <div class="modal-inner-area row">
-                <div class="col-lg-5 col-md-6 col-sm-6">
-                  <!-- Product Details Left -->
-                  <div class="product-details-left">
-                    <div class="product-details-images slider-navigation-1">
-                      <div class="lg-image">
-                        <img
-                          src="images/product/large-size/1.jpg"
-                          alt="product image"
-                        />
-                      </div>
-                      <div class="lg-image">
-                        <img
-                          src="images/product/large-size/2.jpg"
-                          alt="product image"
-                        />
-                      </div>
-                      <div class="lg-image">
-                        <img
-                          src="images/product/large-size/3.jpg"
-                          alt="product image"
-                        />
-                      </div>
-                      <div class="lg-image">
-                        <img
-                          src="images/product/large-size/4.jpg"
-                          alt="product image"
-                        />
-                      </div>
-                      <div class="lg-image">
-                        <img
-                          src="images/product/large-size/5.jpg"
-                          alt="product image"
-                        />
-                      </div>
-                      <div class="lg-image">
-                        <img
-                          src="images/product/large-size/6.jpg"
-                          alt="product image"
-                        />
-                      </div>
-                    </div>
-                    <div class="product-details-thumbs slider-thumbs-1">
-                      <div class="sm-image">
-                        <img
-                          src="images/product/small-size/1.jpg"
-                          alt="product image thumb"
-                        />
-                      </div>
-                      <div class="sm-image">
-                        <img
-                          src="images/product/small-size/2.jpg"
-                          alt="product image thumb"
-                        />
-                      </div>
-                      <div class="sm-image">
-                        <img
-                          src="images/product/small-size/3.jpg"
-                          alt="product image thumb"
-                        />
-                      </div>
-                      <div class="sm-image">
-                        <img
-                          src="images/product/small-size/4.jpg"
-                          alt="product image thumb"
-                        />
-                      </div>
-                      <div class="sm-image">
-                        <img
-                          src="images/product/small-size/5.jpg"
-                          alt="product image thumb"
-                        />
-                      </div>
-                      <div class="sm-image">
-                        <img
-                          src="images/product/small-size/6.jpg"
-                          alt="product image thumb"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <!--// Product Details Left -->
-                </div>
-
-                <div class="col-lg-7 col-md-6 col-sm-6">
-                  <div class="product-details-view-content pt-60">
-                    <div class="product-info">
-                      <h2>Today is a good day Framed poster</h2>
-                      <span class="product-details-ref"
-                        >Reference: demo_15</span
-                      >
-                      <div class="rating-box pt-20">
-                        <ul class="rating rating-with-review-item">
-                          <li><i class="fa fa-star-o"></i></li>
-                          <li><i class="fa fa-star-o"></i></li>
-                          <li><i class="fa fa-star-o"></i></li>
-                          <li class="no-star"><i class="fa fa-star-o"></i></li>
-                          <li class="no-star"><i class="fa fa-star-o"></i></li>
-                          <li class="review-item">
-                            <a href="#">Read Review</a>
-                          </li>
-                          <li class="review-item">
-                            <a href="#">Write Review</a>
-                          </li>
-                        </ul>
-                      </div>
-                      <div class="price-box pt-20">
-                        <span class="new-price new-price-2">$57.98</span>
-                      </div>
-                      <div class="product-desc">
-                        <p>
-                          <span
-                            >100% cotton double printed dress. Black and white
-                            striped top and orange high waisted skater skirt
-                            bottom. Lorem ipsum dolor sit amet, consectetur
-                            adipisicing elit. quibusdam corporis, earum facilis
-                            et nostrum dolorum accusamus similique eveniet quia
-                            pariatur.
-                          </span>
-                        </p>
-                      </div>
-                      <div class="product-variants">
-                        <div class="produt-variants-size">
-                          <label>Dimension</label>
-                          <select class="nice-select">
-                            <option value="1" title="S" selected="selected">
-                              40x60cm
-                            </option>
-                            <option value="2" title="M">60x90cm</option>
-                            <option value="3" title="L">80x120cm</option>
-                          </select>
-                        </div>
-                      </div>
-                      <div class="single-add-to-cart">
-                        <form action="#" class="cart-quantity">
-                          <div class="quantity">
-                            <label>Quantity</label>
-                            <div class="cart-plus-minus">
-                              <input
-                                class="cart-plus-minus-box"
-                                value="1"
-                                type="text"
-                              />
-                              <div class="dec qtybutton">
-                                <i class="fa fa-angle-down"></i>
-                              </div>
-                              <div class="inc qtybutton">
-                                <i class="fa fa-angle-up"></i>
-                              </div>
-                            </div>
-                          </div>
-                          <button class="add-to-cart" type="submit">
-                            Add to cart
-                          </button>
-                        </form>
-                      </div>
-                      <div class="product-additional-info pt-25">
-                        <a class="wishlist-btn" href="wishlist.html"
-                          ><i class="fa fa-heart-o"></i>Add to wishlist</a
-                        >
-                        <div class="product-social-sharing pt-25">
-                          <ul>
-                            <li class="facebook">
-                              <a href="#"
-                                ><i class="fa fa-facebook"></i>Facebook</a
-                              >
-                            </li>
-                            <li class="twitter">
-                              <a href="#"
-                                ><i class="fa fa-twitter"></i>Twitter</a
-                              >
-                            </li>
-                            <li class="google-plus">
-                              <a href="#"
-                                ><i class="fa fa-google-plus"></i>Google +</a
-                              >
-                            </li>
-                            <li class="instagram">
-                              <a href="#"
-                                ><i class="fa fa-instagram"></i>Instagram</a
-                              >
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              </button>             
+              <p style="color: black; font-size:25px; padding-top:10px">Đăng nhập để tiếp tục</p>
             </div>
           </div>
         </div>

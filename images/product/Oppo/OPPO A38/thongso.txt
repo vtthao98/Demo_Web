@@ -1,0 +1,12 @@
+Tên sản phẩm: 	OPPO A38
+Ram: 		6GB
+Dung lượng: 	128GB
+Màn hình: 	6.56" - Tần số quét 90 Hz
+camera trước:	5MP 
+camera sau:  	Chính 50 MP & Phụ 2 MP
+Cpu xử lí: 	MediaTek Helio G85
+Pin: 		5000 mAh
+Sạc nhanh: 	33 W
+Hệ điều hành:	Androi
+
+

@@ -1,0 +1,11 @@
+Tên sản phẩm: 	Samsung Galaxy S24 5G
+Ram: 		8GB
+Dung lượng: 	256GB
+Màn hình: 	6.2" - Tần số quét 120 Hz
+camera trước:	12 MP
+camera sau:  	Chính 50 MP & Phụ 12 MP, 10 MP
+Cpu xử lí: 	Exynos 2400
+Pin: 		4000 mAh
+Sạc nhanh: 	25 Ws
+Hệ điều hành:	Androi
+

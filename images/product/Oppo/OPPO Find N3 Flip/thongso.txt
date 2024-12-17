@@ -1,0 +1,12 @@
+Tên sản phẩm: 	OPPO Find N3 Flip 5G
+Ram: 		12GB
+Dung lượng: 	256GB
+Màn hình: 	6.8inch - độ phân giải 2k - 120Hz
+camera trước:	12MP 
+camera sau:  	Chính 50MP & Phụ 48Mp
+Cpu xử lí: 	Immortalis-G715 MC11
+Pin: 		4300 mAh
+Sạc nhanh: 	67 W
+Hệ điều hành:	Androi
+
+

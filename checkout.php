@@ -82,6 +82,9 @@
                         $SDT = $_GET['SDT'];
                         $ten = $_GET['ten'];
                         $a = "?SDT=$SDT&ten=$ten";
+                        $gio = "href='checkout.php".$a."'";
+                        $yeu = "href='wishlist.php".$a."'";
+                        $IDHang = $a."&IDHang=";
                         ?>
                         <li style="color:blue">
                           Xin chào <?php echo $ten; ?>!
@@ -91,7 +94,7 @@
                         </li>
                         <!-- Begin cart Area -->
                         <li>
-                          <a href="#">Giỏ hàng</a>
+                          <a href="<?php echo "checkout.php".$a; ?>">Giỏ hàng</a>
                         </li>
                         <!-- cart Area End Here -->
                         <!-- Begin wishlist Area -->
@@ -103,13 +106,16 @@
                       } else {
                         ?>
                         <li>
-                          <a href="login-register.php">Đăng nhập</a>
+                          <a href="login-register.php" style="font-size:15px">Đăng nhập</a>
                         </li>
                         <?php
-                        $a = "";        
+                        $a = "";
+                        $gio = "href='' title='quick view' class='quick-view-btn' data-toggle='modal' data-target='#exampleModalCenter'"; 
+                        $yeu = "href='' title='quick view' class='quick-view-btn' data-toggle='modal' data-target='#exampleModalCenter'";
+                        $IDHang = "?IDHang=";
                       }
                     ?>
-                    <!-- login Area End Here --> 
+                    <!-- login Area End Here -->
                   </ul>
                 </div>
               </div>
@@ -126,7 +132,7 @@
               <div class="col-lg-3">
                 <div class="logo pb-sm-30 pb-xs-30">
                   <a href="<?php echo "index.php".$a; ?>">
-                    <img src="images/menu/logo/logo.jpg" alt="" width="70%" />
+                    <img src="images/menu/logo/logo2.jpg" alt="" width="100%" />
                   </a>
                 </div>
               </div>
@@ -161,14 +167,14 @@
                 <div class="hb-menu">
                   <nav>
                     <ul>
-                      <li><a href="<?php echo "index.php".$a; ?>">Trang chủ</a></li>
+                      <li><a href= "<?php echo "index.php".$a; ?>">Trang chủ</a></li>
                       <li class="dropdown-holder">
-                        <a href="index.html">Hãng</a>
+                        <a href="#">Hãng</a>
                         <ul class="hb-dropdown">
-                          <li><a href="index.html">iPhone</a></li>
-                          <li><a href="index-2.html">Samsung</a></li>
-                          <li><a href="index-3.html">OPPO</a></li>
-                          <li><a href="index-4.html">Xiaomi</a></li>
+                          <li><a href="shop-3-column.php<?php echo $IDHang; ?>A">Apple</a></li>
+                          <li><a href="shop-3-column.php<?php echo $IDHang; ?>S">Samsung</a></li>
+                          <li><a href="shop-3-column.php<?php echo $IDHang; ?>O">OPPO</a></li>
+                          <li><a href="shop-3-column.php<?php echo $IDHang; ?>X">Xiaomi</a></li>
                         </ul>
                       </li>
                       <li><a href="<?php echo "about-us.php".$a; ?>">Giới thiệu</a></li>
@@ -206,7 +212,7 @@
       </div>
       <!-- Li's Breadcrumb Area End Here -->
       <!--Checkout Area Strat-->
-      <div class="checkout-area pt-60 pb-30">
+      <div class="checkout-area pt-30 pb-30">
         <div class="container">
           <div class="row">
             <div class="col-12">
@@ -261,18 +267,26 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-lg-6 col-12">
+            <div class="col-lg-7 col-12" style="margin-left:50%; transform: translateX(-50%);">
               <form action="#">
                 <div class="checkbox-form">
-                  <h3>THÔNG TIN GIAO HÀNG</h3>
+                  <h3 style="text-align:center">THÔNG TIN GIAO HÀNG</h3>
                   <div class="row">
                     <div class="col-md-12">
                       <div class="checkout-form-list">
-                        <label>Họ và tên <span class="required">*</span></label>
-                        <input placeholder="" type="text" />
+                        <?php
+                          $stmt = $conn->prepare("SELECT Email, DiaChi FROM KhachHang WHERE SDT = '$SDT'");
+                          $stmt->execute(); 
+                          $stmt->setFetchMode(PDO::FETCH_ASSOC); 
+                          $result = $stmt->fetchAll();
+                          $email = $result[0]['Email'];
+                          $diachi = $result[0]['DiaChi'];
+                        ?>
+                        <label>Tên <span class="required">*</span></label>
+                        <input placeholder="" type="text" value="<?php echo $ten; ?>"/>
                       </div>
                     </div>
-                    <div class="col-md-12">
+                    <!-- <div class="col-md-12">
                       <div class="country-select clearfix">
                         <label>Tỉnh/TP <span class="required">*</span></label>
                         <select class="nice-select wide">
@@ -284,14 +298,18 @@
                           <option value="aus">TP Hồ Chí Minh</option>
                         </select>
                       </div>
-                    </div>
+                    </div> -->
                     <div class="col-md-12">
                       <div class="checkout-form-list">
                         <label>Địa chỉ<span class="required">*</span></label>
                         <input
-                          placeholder="Số nhà, tên đường, phường/xã/thị trấn, quận/huyện"
                           type="text"
-                        />
+                          <?php 
+                          if ($diachi != NULL and $diachi !="")
+                            echo "value='".$diachi."'";
+                          else echo "placeholder='Số nhà, tên đường, phường/xã/thị trấn, quận/huyện, tỉnh/TP'";
+                          ?>
+                        "/>
                       </div>
                     </div>
                     <div class="col-md-12">
@@ -299,94 +317,95 @@
                         <label
                           >Địa chỉ email <span class="required">*</span></label
                         >
-                        <input placeholder="" type="email" />
+                        <input placeholder="" type="email" value="<?php echo $email; ?>"/>
                       </div>
                     </div>
                     <div class="col-md-12">
                       <div class="checkout-form-list">
-                        <label
-                          >Số điện thoại <span class="required">*</span></label
-                        >
-                        <input type="text" />
+                        <label>Số điện thoại <span class="required">*</span></label>
+                        <input type="text" value="<?php echo $SDT; ?>"/>
                       </div>
                     </div>
-                    <div class="col-md-12">
+                    <!-- <div class="col-md-12">
                       <div class="checkout-form-list create-acc">
                         <input id="cbox" type="checkbox" />
-                        <label>Tạo tài khoản?</label>
+                        <label>Đặt làm địa chỉ mặc định?</label>
                       </div>
-                      <div
-                        id="cbox-info"
-                        class="checkout-form-list create-account"
-                      >
+                      <div id="cbox-info" class="checkout-form-list create-account">
                         <p>
-                          Điền thông tin dưới đây để tạo tài khoản mới. Nếu bạn
-                          đã có tài khoản, về đầu trang để đăng nhập.
+                          Bạn chắc chắn muốn đặt làm địa chỉ mặc định? Địa chỉ bạn đã lưu sẽ bị xóa.
                         </p>
-                        <label>Mật khẩu <span class="required">*</span></label>
-                        <input placeholder="Mật khẩu" type="password" />
                       </div>
-                    </div>
-                  </div>
-                  <div class="different-address">
-                    <div class="order-notes">
-                      <div class="checkout-form-list">
-                        <label>Ghi chú</label>
-                        <textarea
-                          id="checkout-mess"
-                          cols="30"
-                          rows="10"
-                          placeholder="Nhập ghi chú"
-                        ></textarea>
+                    </div> -->
+                    <div class="col-md-12">
+                      <div class="order-notes">
+                        <div class="checkout-form-list">
+                          <label>Ghi chú</label>
+                          <textarea
+                            id="checkout-mess"
+                            cols="30"
+                            rows="10"
+                            placeholder="Nhập ghi chú"
+                          ></textarea>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </form>
             </div>
-            <div class="col-lg-6 col-12">
+            <div class="col-lg-9 col-12" style="margin-left:50%; transform: translateX(-50%);">
               <div class="your-order">
-                <h3>Hóa đơn</h3>
-                <div class="your-order-table table-responsive">
+                <h3 >Hóa đơn</h3>
+                <div class="your-order-table table-responsive" style="border-bottom: 1px solid #000">
                   <table class="table">
                     <thead>
                       <tr>
-                        <th class="cart-product-name">Sản phẩm</th>
-                        <th class="cart-product-total">Giá tiền</th>
+                        <th class="cart-product-name"><b>Sản phẩm</b></th>
+                        <th class="cart-product-name"><b>Đơn giá</b></th>
+                        <th class="cart-product-name"><b>Số lượng</b></th>
+                        <!-- <th class="cart-product-total"><b>Giá tiền</b></th> -->
                       </tr>
                     </thead>
                     <tbody>
                       <tr class="cart_item">
+                        <td class="cart-product-name">Điện thoại Samsung Galaxy S24 Ultra</td>
+                        <td class="cart-product-name">1000000 đ</td>
                         <td class="cart-product-name">
-                          Vestibulum suscipit<strong class="product-quantity">
-                            × 1</strong
-                          >
+                        <div class="cart-plus-minus" style="margin-left:50%; transform: translateX(-50%);">
+                          <input
+                            class="cart-plus-minus-box"
+                            value="1"
+                            type="number"
+                            name="soluong"
+                          />
+                          <div class="dec qtybutton">
+                            <i class="fa fa-angle-down"></i>
+                          </div>
+                          <div class="inc qtybutton">
+                            <i class="fa fa-angle-up"></i>
+                          </div>
+                        </div>
                         </td>
-                        <td class="cart-product-total">
-                          <span class="amount">£165.00</span>
-                        </td>
+                        <!-- <td class="cart-product-total"><span class="amount">1000000</span> đ</td> -->
                       </tr>
                       <tr class="cart_item">
-                        <td class="cart-product-name">
-                          Vestibulum suscipit<strong class="product-quantity">
-                            × 1</strong
-                          >
-                        </td>
-                        <td class="cart-product-total">
-                          <span class="amount">£165.00</span>
-                        </td>
+                        <td class="cart-product-name">Điện thoại Samsung Galaxy S24</td>
+                        <td class="cart-product-name">2000000 đ</td>
+                        <td class="cart-product-name">2</td>
+                        <!-- <td class="cart-product-total"><span class="amount">4000000</span> đ</td> -->
                       </tr>
                     </tbody>
                     <tfoot>
-                      <tr class="cart-subtotal">
+                      <!-- <tr class="cart-subtotal">
                         <th>Tổng tiền sản phẩm</th>
                         <td><span class="amount">£215.00</span></td>
-                      </tr>
+                      </tr> -->
                       <tr class="order-total">
-                        <th>Tổng thanh toán</th>
-                        <td>
-                          <strong><span class="amount">£215.00</span></strong>
-                        </td>
+                        <th><b>Tổng thanh toán</b></th>
+                        <th></th>
+                        <!-- <th></th> -->
+                        <th style="color:red"><b>5000000 vnd</b></th>
                       </tr>
                     </tfoot>
                   </table>
@@ -582,7 +601,7 @@
                 <!-- Begin Footer Logo Area -->
                 <div class="col-lg-6 col-md-6">
                   <div class="footer-logo">
-                    <img src="images/menu/logo/logo.jpg" alt="Footer Logo" />
+                    <img src="images/menu/logo/logo2.jpg" width="40%" alt="Footer Logo" />
                     <p class="info">
                       Quality never goes of styles - Chất lượng không thể nào
                       thiếu phong cách
@@ -594,7 +613,7 @@
                       102 Hùng Vương, phường An Mỹ, TP Tam Kỳ, tỉnh Quảng Nam
                     </li>
                     <li>
-                      <span>Phone: </span> (+84) 123 321 345
+                      <span>Phone: </span>(+84) 123 321 345
                     </li>
                     <li><span>Email: </span>info@yourdomain.com</li>
                   </ul>
@@ -624,16 +643,6 @@
                           title="Twitter"
                         >
                           <i class="fa fa-twitter"></i>
-                        </a>
-                      </li>
-                      <li class="rss">
-                        <a
-                          href="https://rss.com/"
-                          data-toggle="tooltip"
-                          target="_blank"
-                          title="RSS"
-                        >
-                          <i class="fa fa-rss"></i>
                         </a>
                       </li>
                       <li class="google-plus">
@@ -678,6 +687,9 @@
                       </li>
                     </ul>
                   </div>
+                  <!-- Begin Footer Newsletter Area -->
+
+                  <!-- Footer Newsletter Area End Here -->
                 </div>
                 <!-- Footer Block Area End Here -->
               </div>
@@ -685,6 +697,8 @@
           </div>
         </div>
         <!-- Footer Static Middle Area End Here -->
+        <!-- Begin Footer Static Bottom Area -->
+        <!-- Footer Static Bottom Area End Here -->
       </div>
       <!-- Footer Area End Here -->
     </div>

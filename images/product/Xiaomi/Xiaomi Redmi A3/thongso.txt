@@ -1,0 +1,11 @@
+Tên sản phẩm: 	Xiaomi Redmi A3
+Ram: 		3GB
+Dung lượng: 	64GB
+Màn hình: 	6.71" - Tần số quét 90 Hz
+camera trước:	5 MP
+camera sau:  	Chính 8 MP & Phụ 0.08 MP
+Cpu xử lí: 	MediaTek Helio G36 8 nhân
+Pin: 		5000 mAh
+Sạc nhanh: 	10 W
+Hệ điều hành:	Androi
+

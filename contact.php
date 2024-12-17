@@ -76,20 +76,45 @@
                 <div>
                   <ul class="ht-menu">
                     <!-- Begin login Area -->
-                    <li>
-                      <a href="login-register.php">Đăng nhập</a>
-                    </li>
+                    <?php
+                      if(isset($_GET["SDT"])){
+                        $SDT = $_GET['SDT'];
+                        $ten = $_GET['ten'];
+                        $a = "?SDT=$SDT&ten=$ten";
+                        $gio = "href='checkout.php".$a."'";
+                        $yeu = "href='wishlist.php".$a."'";
+                        $IDHang = $a."&IDHang=";
+                        ?>
+                        <li style="color:blue">
+                          Xin chào <?php echo $ten; ?>!
+                        </li>
+                        <li>
+                          <a href="index.php">Đăng xuất</a>
+                        </li>
+                        <!-- Begin cart Area -->
+                        <li>
+                          <a href="<?php echo "checkout.php".$a; ?>">Giỏ hàng</a>
+                        </li>
+                        <!-- cart Area End Here -->
+                        <!-- Begin wishlist Area -->
+                        <li>
+                          <a href="<?php echo "wishlist.php".$a; ?>">Yêu thích</a>
+                        </li>
+                        <!-- wishlist Area End Here -->
+                        <?php        
+                      } else {
+                        ?>
+                        <li>
+                          <a href="login-register.php" style="font-size:15px">Đăng nhập</a>
+                        </li>
+                        <?php
+                        $a = "";
+                        $gio = "href='' title='quick view' class='quick-view-btn' data-toggle='modal' data-target='#exampleModalCenter'"; 
+                        $yeu = "href='' title='quick view' class='quick-view-btn' data-toggle='modal' data-target='#exampleModalCenter'";
+                        $IDHang = "?IDHang=";
+                      }
+                    ?>
                     <!-- login Area End Here -->
-                    <!-- Begin cart Area -->
-                    <li>
-                      <a href="checkout.php">Giỏ hàng</a>
-                    </li>
-                    <!-- cart Area End Here -->
-                    <!-- Begin wishlist Area -->
-                    <li>
-                      <a href="wishlist.php">Yêu thích</a>
-                    </li>
-                    <!-- wishlist Area End Here -->
                   </ul>
                 </div>
               </div>
@@ -105,8 +130,8 @@
               <!-- Begin Header Logo Area -->
               <div class="col-lg-3">
                 <div class="logo pb-sm-30 pb-xs-30">
-                  <a href="#">
-                    <img src="images/menu/logo/logo.jpg" alt="" width="70%" />
+                  <a href="<?php echo "index.php".$a; ?>">
+                    <img src="images/menu/logo/logo2.jpg" alt="" width="100%" />
                   </a>
                 </div>
               </div>
@@ -141,18 +166,18 @@
                 <div class="hb-menu">
                   <nav>
                     <ul>
-                      <li><a href="index.php">Trang chủ</a></li>
+                      <li><a href= "<?php echo "index.php".$a; ?>">Trang chủ</a></li>
                       <li class="dropdown-holder">
-                        <a href="index.php">Hãng</a>
+                        <a href="#">Hãng</a>
                         <ul class="hb-dropdown">
-                          <li><a href="index.php">iPhone</a></li>
-                          <li><a href="index.php">Samsung</a></li>
-                          <li><a href="index.php">OPPO</a></li>
-                          <li><a href="index.php">Xiaomi</a></li>
+                          <li><a href="shop-3-column.php<?php echo $IDHang; ?>A">Apple</a></li>
+                          <li><a href="shop-3-column.php<?php echo $IDHang; ?>S">Samsung</a></li>
+                          <li><a href="shop-3-column.php<?php echo $IDHang; ?>O">OPPO</a></li>
+                          <li><a href="shop-3-column.php<?php echo $IDHang; ?>X">Xiaomi</a></li>
                         </ul>
                       </li>
-                      <li><a href="about-us.php">Giới thiệu</a></li>
-                      <li><a href="contact.php">Liên hệ</a></li>
+                      <li><a href="<?php echo "about-us.php".$a; ?>">Giới thiệu</a></li>
+                      <li><a href="<?php echo "contact.php".$a; ?>">Liên hệ</a></li>
                     </ul>
                   </nav>
                 </div>
@@ -178,7 +203,7 @@
         <div class="container">
           <div class="breadcrumb-content">
             <ul>
-              <li><a href="index.php">Trang chủ</a></li>
+              <li><a href="<?php echo "index.php".$a; ?>">Trang chủ</a></li>
               <li class="active">Liên hệ</li>
             </ul>
           </div>
@@ -362,7 +387,7 @@
                 <!-- Begin Footer Logo Area -->
                 <div class="col-lg-6 col-md-6">
                   <div class="footer-logo">
-                    <img src="images/menu/logo/logo.jpg" alt="Footer Logo" />
+                    <img src="images/menu/logo/logo2.jpg" width="40%" alt="Footer Logo" />
                     <p class="info">
                       Quality never goes of styles - Chất lượng không thể nào
                       thiếu phong cách
@@ -374,8 +399,7 @@
                       102 Hùng Vương, phường An Mỹ, TP Tam Kỳ, tỉnh Quảng Nam
                     </li>
                     <li>
-                      <span>Phone: </span>
-                      <a href="#">(+84) 123 321 345</a>
+                      <span>Phone: </span>(+84) 123 321 345
                     </li>
                     <li><span>Email: </span>info@yourdomain.com</li>
                   </ul>
@@ -386,8 +410,8 @@
                   <div class="footer-block">
                     <h3 class="footer-block-title">Về chúng tôi</h3>
                     <ul>
-                      <li><a href="#">Giới thiệu</a></li>
-                      <li><a href="#">Liên hệ</a></li>
+                      <li><a href="<?php echo "about-us.php".$a; ?>">Giới thiệu</a></li>
+                      <li><a href="<?php echo "contact.php".$a; ?>">Liên hệ</a></li>
                     </ul>
                   </div>
                 </div>
@@ -405,16 +429,6 @@
                           title="Twitter"
                         >
                           <i class="fa fa-twitter"></i>
-                        </a>
-                      </li>
-                      <li class="rss">
-                        <a
-                          href="https://rss.com/"
-                          data-toggle="tooltip"
-                          target="_blank"
-                          title="RSS"
-                        >
-                          <i class="fa fa-rss"></i>
                         </a>
                       </li>
                       <li class="google-plus">
@@ -459,6 +473,9 @@
                       </li>
                     </ul>
                   </div>
+                  <!-- Begin Footer Newsletter Area -->
+
+                  <!-- Footer Newsletter Area End Here -->
                 </div>
                 <!-- Footer Block Area End Here -->
               </div>
@@ -466,6 +483,8 @@
           </div>
         </div>
         <!-- Footer Static Middle Area End Here -->
+        <!-- Begin Footer Static Bottom Area -->
+        <!-- Footer Static Bottom Area End Here -->
       </div>
       <!-- Footer Area End Here -->
     </div>
